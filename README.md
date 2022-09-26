@@ -19,5 +19,3 @@ That's what inspired KoyoMe! The world's calendar where all of the events and ac
 - [ERD](https://lucid.app/lucidchart/3f55956c-ac27-4a0d-ba7d-b9f8b3761b33/edit?viewport_loc=231%2C36%2C1347%2C999%2C0_0&invitationId=inv_4c5dbeea-e0d2-4e8b-8793-54a9abed9c15#)
 
 - [Kanban](https://trello.com/b/e9F9EPSd/koyome-draft)
-
-- [Wireframe](https://www.figma.com/file/aW4G1GT5zIy6ftczvNBIUf/KoyoMe-draft?node-id=0%3A1)
