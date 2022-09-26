@@ -1,39 +1,21 @@
-## Setup 
+# KoyoMe
 
-1. Clone the repo
-2. Rename the folder to your Project, you can use the `mv` command like `mv mern-boilerplate yourprojectname`
-3. Delete the `.git` file, when you are in the root of the file, you can press `ls` and you should see a `.git` file, then go ahead and run `rm -rf .git`
+## The world's calendar
 
+We've all been there before. We get on a roadtrip and find ourselves in a brand new city but have no idea what's going down in town. Instintively, you flex your Googling skills and make a few quesries: "Events near me", "Latin night in blah city" or "Wine tasting blah city"... the list goes on, and Google always comes through and shower you with various events.
 
-#### Setup your git repo
+However, there are events that you just don't find even with the Mighty Google's query power! Say, you and your friends wanted to enjoy some live music at the local bar but Google doesn't tell you these small events :( So what are you left to do? Search each individual bars and browse their own calendar.
 
-1. go to github and create your github and create a repo (Without a readme or liscense you can add that later!)
-2.  Then follow the directions on github that says ```…or create a new repository on the command line```
+It's 2022, why are we still searching activities like we're still on MapQuest? Why isn't there a single stop that aggregates all the events like everything else?
 
-it should look like this
+Imagine a calendar with a bit of a social media twist. You can create one or many calendars, add your events, organize it and post it to the world. Similar to a social media platform, you can follow other people's calendars, from friends, to your favorite local bars, to the city's event organizers, or even that small shop that occasionally runs a flash sales!
 
-```
-git init
-git add .
-git commit -m "first commit"
-git remote add origin git@git.generalassemb.ly:SEI-CC/test.git // this will be whatever your address will be
-git push -u origin master
-```
+That's what inspired KoyoMe! The world's calendar where all of the events and activities are aggregated.
 
-#### Setup the App
+<br />
 
-```npm install```
+# Development
 
-*DOTENV*
+- [ERD](https://lucid.app/lucidchart/3f55956c-ac27-4a0d-ba7d-b9f8b3761b33/edit?viewport_loc=231%2C36%2C1347%2C999%2C0_0&invitationId=inv_4c5dbeea-e0d2-4e8b-8793-54a9abed9c15#)
 
-`touch .env`
-
-add your variables
-
-```
-DATABASE_URL=mongodb://localhost:27017/testagramV2
-BUCKET_NAME=catcollectorone
-SECRET=mysecretforjwt
-```
-
-The app is configured, to use those respective key names for the database, jwt secret and aws bucket, of course you'll have your own values
+- [Trello](https://trello.com/b/e9F9EPSd/koyome-draft)
