@@ -1,14 +1,9 @@
 const mongoose = require('mongoose');
 
-const commentSchema = mongoose.Schema(
-  {
-    content: String,
-    userId: { type: mongoose.Schema.Types.ObjectId },
-  },
-  {
-    timestamps: true,
-  }
-);
+const likesSchema = mongoose.Schema({
+  username: String,
+  userId: { type: mongoose.Schema.Types.ObjectId },
+});
 
 const eventSchema = new mongoose.Schema(
   {
@@ -37,7 +32,7 @@ const eventSchema = new mongoose.Schema(
     eventPhoto: String,
     eventUrl: String,
     description: String,
-    comments: [commentSchema],
+    likes: [likesSchema],
   },
   {
     timestamps: true,

@@ -4,7 +4,8 @@ import './App.css';
 import SignupPage from '../SignupPage/SignupPage';
 import LoginPage from '../LoginPage/LoginPage';
 import userService from '../../utils/userService';
-import HomePage from '../../pages/HomePage/HomePage';
+import HomePage from '../HomePage/HomePage';
+import ManCal from '../MainCal/MainCal';
 
 function App() {
   const [user, setUser] = useState(userService.getUser()); // getUser decodes our JWT token, into a javascript object
@@ -35,6 +36,8 @@ function App() {
           path="/signup"
           element={<SignupPage handleSignUpOrLogin={handleSignUpOrLogin} />}
         />
+        <Route path={`/${user?.username}`} element={<ManCal />} />
+        <Route path="/*" element={<Navigate to="/" />} />
       </Routes>
     );
   }

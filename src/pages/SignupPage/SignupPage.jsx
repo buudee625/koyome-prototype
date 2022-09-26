@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import ErrorMessage from '../../components/ErrorMessage/ErrorMessage';
 import userService from '../../utils/userService';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Button, Form, Grid, Header, Icon, Segment } from 'semantic-ui-react';
 
 // Utility functions that don't pertain to the component can
@@ -160,6 +160,7 @@ export default function SignUpPage(props) {
             <Button type="submit" className="btn">
               Signup
             </Button>
+            <Link to="/login">Or sign into your account</Link>
           </Segment>
           {error.message ? <ErrorMessage error={error.message} /> : null}
         </Form>

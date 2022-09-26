@@ -17,18 +17,26 @@ export default function HomePage({ loggedUser, handleLogout }) {
   return (
     <>
       <Nav loggedUser={loggedUser} handleLogout={handleLogout} />
-      <Image src="https://i.imgur.com/W1o1J7Q.jpg" fluid />
-      <Container text>
+      <Grid>
         <Header
           as="h1"
-          content="Imagine-a-Company"
+          inverted
           style={{
             fontSize: '4em',
-            fontWeight: 'normal',
-            marginBottom: 0,
-            marginTop: '3em',
+            display: 'flex',
+            position: 'absolute',
+            top: '50%',
+            width: '100%',
+            height: '100%',
+            justifyContent: 'center',
+            zIndex: 1,
           }}
-        />
+        >
+          What's happening in the world?
+        </Header>
+        <Image src="https://i.imgur.com/W1o1J7Q.jpg" fluid />
+      </Grid>
+      <Container text>
         <Segment>
           <Grid celled="internally" columns="equal" stackable>
             <Grid.Row textAlign="center">
@@ -61,13 +69,11 @@ export default function HomePage({ loggedUser, handleLogout }) {
                 </Placeholder>
               </Grid.Column>
               <Grid.Column style={{ paddingBottom: '5em', paddingTop: '5em' }}>
-                {' '}
                 <Placeholder>
                   <Image src="https://react.semantic-ui.com/images/avatar/large/helen.jpg" />
                 </Placeholder>
               </Grid.Column>
               <Grid.Column style={{ paddingBottom: '5em', paddingTop: '5em' }}>
-                {' '}
                 <Placeholder>
                   <Image src="https://react.semantic-ui.com/images/avatar/large/helen.jpg" />
                 </Placeholder>
