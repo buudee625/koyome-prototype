@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Footer from '../../components/Footer/Footer';
-import Nav from '../../components/Nav/Nav';
+import PageHeader from '../../components/PageHeader/PageHeader';
 import {
   Container,
   Grid,
@@ -16,7 +16,7 @@ import {
 export default function HomePage({ loggedUser, handleLogout }) {
   return (
     <>
-      <Nav loggedUser={loggedUser} handleLogout={handleLogout} />
+      <PageHeader loggedUser={loggedUser} handleLogout={handleLogout} />
       <Grid>
         <Header
           as="h1"

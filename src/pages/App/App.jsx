@@ -1,11 +1,14 @@
+// Import: React
 import React, { useState } from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
+// Import: Stylesheet
 import './App.css';
+// Import: Components
 import SignupPage from '../SignupPage/SignupPage';
 import LoginPage from '../LoginPage/LoginPage';
 import userService from '../../utils/userService';
 import HomePage from '../HomePage/HomePage';
-import ManCal from '../MainCal/MainCal';
+import UserMain from '../UserMain/UserMain';
 
 function App() {
   const [user, setUser] = useState(userService.getUser()); // getUser decodes our JWT token, into a javascript object
@@ -36,7 +39,10 @@ function App() {
           path="/signup"
           element={<SignupPage handleSignUpOrLogin={handleSignUpOrLogin} />}
         />
-        <Route path={`/${user?.username}`} element={<ManCal />} />
+        <Route
+          path={`/${user?.username}`}
+          element={<UserMain loggedUser={user} />}
+        />
         <Route path="/*" element={<Navigate to="/" />} />
       </Routes>
     );

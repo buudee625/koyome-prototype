@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@fullcalendar/daygrid": "^5.11.3",
+    "@fullcalendar/react": "^5.11.2",
     "@testing-library/jest-dom": "^5.15.0",
     "@testing-library/react": "^12.1.2",
     "@testing-library/user-event": "^13.5.0",
@@ -16,7 +18,9 @@
     "morgan": "^1.10.0",
     "multer": "^1.4.5-lts.1",
     "react": "^17.0.2",
+    "react-datetime": "^3.1.1",
     "react-dom": "^17.0.2",
+    "react-modal": "^3.15.1",
     "react-router-dom": "^6.0.0",
     "semantic-ui-css": "^2.4.1",
     "semantic-ui-react": "^2.0.4",
