@@ -9,6 +9,7 @@ import LoginPage from '../LoginPage/LoginPage';
 import userService from '../../utils/userService';
 import HomePage from '../HomePage/HomePage';
 import UserMain from '../UserMain/UserMain';
+import NewEvent from '../NewEvent/NewEvent';
 
 function App() {
   const [user, setUser] = useState(userService.getUser()); // getUser decodes our JWT token, into a javascript object
@@ -41,8 +42,12 @@ function App() {
         />
         <Route
           path={`/${user?.username}`}
-          element={<UserMain loggedUser={user} />}
+          element={<UserMain loggedUser={user} handleLogout={handleLogout} />}
         />
+        <Route
+          path="/new-event"
+          element={<NewEvent loggedUser={user} handleLogout={handleLogout} />}
+        ></Route>
         <Route path="/*" element={<Navigate to="/" />} />
       </Routes>
     );

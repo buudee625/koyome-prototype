@@ -1,6 +1,9 @@
+// Import React
 import React, { useState } from 'react';
-import Footer from '../../components/Footer/Footer';
+// Import Components
 import PageHeader from '../../components/PageHeader/PageHeader';
+import Footer from '../../components/Footer/Footer';
+// Import Semantic
 import {
   Container,
   Grid,

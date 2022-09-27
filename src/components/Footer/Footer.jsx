@@ -1,5 +1,5 @@
 import React from 'react';
-import { Segment, Container, Grid, Button } from 'semantic-ui-react';
+import { Segment, Grid, Button } from 'semantic-ui-react';
 
 export default function Footer() {
   return (

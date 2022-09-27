@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import ErrorMessage from '../../components/ErrorMessage/ErrorMessage';
 import userService from '../../utils/userService';
-import { Link, useNavigate } from 'react-router-dom';
 import { Button, Form, Grid, Header, Icon, Segment } from 'semantic-ui-react';
 
 // Utility functions that don't pertain to the component can

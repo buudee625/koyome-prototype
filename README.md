@@ -14,7 +14,7 @@ That's what inspired KoyoMe! The world's calendar where all of the events and ac
 
 <br />
 
-# Development
+# Development 🛠
 
 - [ERD](https://lucid.app/lucidchart/3f55956c-ac27-4a0d-ba7d-b9f8b3761b33/edit?viewport_loc=231%2C36%2C1347%2C999%2C0_0&invitationId=inv_4c5dbeea-e0d2-4e8b-8793-54a9abed9c15#)
 
@@ -22,10 +22,21 @@ That's what inspired KoyoMe! The world's calendar where all of the events and ac
 
 - [Wireframe](https://www.figma.com/file/aW4G1GT5zIy6ftczvNBIUf/KoyoMe-draft?node-id=0%3A1)
 
-# Technologies
+# Technologies 💿
 
-## Packages
+- MongoDB
+- Express
+- React
+- NodeJS
+- Semantics UI
+
+## Dependencies 📦
 
 - dotevn
-- date-fns
-- jwt
+- bcrypt
+- multer
+- jsonwebtoken
+- @fullcalendar/react
+- @fullcalendar/daygrid
+- react-modal
+- react-datetime
