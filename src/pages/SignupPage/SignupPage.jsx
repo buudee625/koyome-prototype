@@ -145,7 +145,7 @@ export default function SignUpPage(props) {
             <Form.TextArea
               label="bio"
               name="bio"
-              placeholder="Tell us more about your dogs..."
+              placeholder="Tell us about yourself..."
               value={state.bio}
               onChange={handleChange}
             />

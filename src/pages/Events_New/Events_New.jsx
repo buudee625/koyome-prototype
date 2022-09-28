@@ -17,7 +17,10 @@ export default function NewEvent(props) {
     description: '',
   });
   const [selectedFile, setSelectedFile] = useState('');
-  const [events, setEvents] = useState([]);
+
+  const [start, setStart] = useState('');
+  const [end, setEnd] = useState('');
+
   const navigate = useNavigate();
 
   // input detection functions
@@ -35,6 +38,12 @@ export default function NewEvent(props) {
     //   '<---e.target.files[0] from handleFileINput: Events_New'
     // );
   }
+  function printFormData(form) {
+    console.log(
+      form.forEach((item) => console.log(item)),
+      ' <---formData'
+    );
+  }
 
   // call functions
   async function handleSubmit(e) {
@@ -44,20 +53,29 @@ export default function NewEvent(props) {
     const formData = new FormData();
     // console.log(selectedFile, '<--selectedFile');
 
+    formData.append('photo', selectedFile);
+    formData.append('start', start);
+    formData.append('end', end);
     for (let key in input) {
       formData.append(key, input[key]);
     }
-    formData.append('photo', selectedFile);
-    console.log(
-      formData.forEach((item) => console.log(item)),
-      ' <---formData'
-    );
+
     try {
       const response = await EventAPI.create(formData);
       console.log(response, '<< response from handleSubmit() Events_New');
     } catch (err) {
       console.log(err.message, '<< err from handleSubmit() Events_New');
     }
+  }
+
+  function handleStart(moObj) {
+    const dateString = moObj.toString();
+    setStart(dateString);
+  }
+
+  function handleEnd(moObj) {
+    const dateString = moObj.toString();
+    setEnd(dateString);
   }
 
   return (
@@ -75,7 +93,12 @@ export default function NewEvent(props) {
               placeholder="What's this event called?"
               onChange={handleInput}
             ></Form.Input>
-
+            <Form.Field>
+              <Datetime name="start" onChange={(date) => handleStart(date)} />
+            </Form.Field>
+            <Form.Field>
+              <Datetime name="end" onChange={(date) => handleEnd(date)} />
+            </Form.Field>
             <Form.Input
               name="eventUrl"
               label="Event URL"
