@@ -1,13 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import {
-  Menu,
-  Header,
-  Segment,
-  Image,
-  Dropdown,
-  Grid,
-} from 'semantic-ui-react';
+import { Menu, Header, Image, Dropdown } from 'semantic-ui-react';
 
 export default function PageHeader({ loggedUser, handleLogout }) {
   console.log(loggedUser, '<-- loggedUser in header');
@@ -33,7 +26,16 @@ export default function PageHeader({ loggedUser, handleLogout }) {
         </Menu.Item>
         <Dropdown item icon="bars">
           <Dropdown.Menu>
-            <Dropdown.Item text="New Event" />
+            <Dropdown.Item>
+              <Link to="/new_event" style={{ color: 'black' }}>
+                New Event
+              </Link>
+            </Dropdown.Item>
+            <Dropdown.Item>
+              <Link to="/events" style={{ color: 'black' }}>
+                All Events
+              </Link>
+            </Dropdown.Item>
             <Dropdown.Item text="Open..." description="ctrl + o" />
             <Dropdown.Divider />
             <Dropdown.Item text="Preferences" icon="setting" />

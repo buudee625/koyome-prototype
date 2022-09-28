@@ -9,17 +9,14 @@ import Modal from 'react-modal';
 
 Modal.setAppElement('#root');
 
-export default function UserMain({ loggedUser, handleLogout }) {
+export default function UserMain() {
   return (
-    <>
-      <PageHeader loggedUser={loggedUser} handleLogout={handleLogout} />
-      <Grid>
-        <Grid.Row>
-          <Grid.Column style={{ padding: '0 15rem 0 15rem' }}>
-            <Calendar />
-          </Grid.Column>
-        </Grid.Row>
-      </Grid>
-    </>
+    <Grid>
+      <Grid.Row>
+        <Grid.Column style={{ padding: '0 15rem 0 15rem' }}>
+          <Calendar />
+        </Grid.Column>
+      </Grid.Row>
+    </Grid>
   );
 }

@@ -9,27 +9,17 @@ const eventSchema = new mongoose.Schema(
   {
     user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
     title: { type: String, required: true },
-    dateStart: {
+    start: {
       type: Date,
       required: true,
       default: Date.now,
     },
-    dateEnd: {
+    end: {
       type: Date,
       required: true,
       default: Date.now,
     },
-    timeStart: {
-      type: Date,
-      required: true,
-      default: Date.now,
-    },
-    timeEnd: {
-      type: Date,
-      required: true,
-      default: Date.now,
-    },
-    eventPhoto: String,
+    poster: String,
     eventUrl: String,
     description: String,
     likes: [likesSchema],

@@ -23,7 +23,7 @@ app.use(express.static(path.join(__dirname, 'build'))); // this allows express t
 app.use(require('./config/auth'));
 // api routes must be before the "catch all" route
 app.use('/api/users', require('./routes/api/users'));
-app.use('/api/calendar', require('./routes/api/calendar'));
+app.use('/api/events', require('./routes/api/events'));
 // "catch all" route
 app.get('/*', function (req, res) {
   res.sendFile(path.join(__dirname, 'build', 'index.html'));

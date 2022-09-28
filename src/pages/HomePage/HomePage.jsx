@@ -1,25 +1,20 @@
 // Import React
 import React, { useState } from 'react';
 // Import Components
-import PageHeader from '../../components/PageHeader/PageHeader';
 import Footer from '../../components/Footer/Footer';
 // Import Semantic
 import {
   Container,
   Grid,
   Header,
-  Button,
-  Icon,
   Image,
-  Card,
   Placeholder,
   Segment,
 } from 'semantic-ui-react';
 
-export default function HomePage({ loggedUser, handleLogout }) {
+export default function HomePage() {
   return (
     <>
-      <PageHeader loggedUser={loggedUser} handleLogout={handleLogout} />
       <Grid>
         <Header
           as="h1"
