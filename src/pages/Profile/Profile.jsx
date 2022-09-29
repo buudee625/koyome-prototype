@@ -1,14 +1,9 @@
-// Import: React
-// Import: Semantic
-import { Segment, Grid, Button } from 'semantic-ui-react';
-// Import: Components
+import { Grid } from 'semantic-ui-react';
 import Calendar from '../../components/Calendar/Calendar';
-import PageHeader from '../../components/PageHeader/PageHeader';
-// Import: Dependencies
 
 import UserEventsList from '../../components/UserEventsList/UserEventsList';
 
-export default function UserMain() {
+export default function Profile() {
   return (
     <Grid>
       <Grid.Row>

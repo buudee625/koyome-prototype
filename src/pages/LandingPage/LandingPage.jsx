@@ -1,5 +1,5 @@
 // Import React
-import React, { useState } from 'react';
+import React from 'react';
 // Import Components
 import Footer from '../../components/Footer/Footer';
 // Import Semantic
@@ -12,7 +12,7 @@ import {
   Segment,
 } from 'semantic-ui-react';
 
-export default function HomePage() {
+export default function LandingPage() {
   return (
     <>
       <Grid>

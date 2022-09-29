@@ -7,8 +7,8 @@ import './App.css';
 import SignupPage from '../SignupPage/SignupPage';
 import LoginPage from '../LoginPage/LoginPage';
 import userService from '../../utils/userService';
-import HomePage from '../HomePage/HomePage';
-import UserMain from '../UserMain/UserMain';
+import LandingPage from '../LandingPage/LandingPage';
+import Profile from '../Profile/Profile';
 import EventNew from '../Events_New/Events_New';
 import EventAll from '../../components/EventsList/EventsList';
 import PageHeader from '../../components/PageHeader/PageHeader';
@@ -32,7 +32,7 @@ function App() {
       <>
         <PageHeader loggedUser={user} handleLogout={handleLogout} />
         <Routes>
-          <Route path="/" element={<HomePage />} />
+          <Route path="/" element={<LandingPage />} />
           <Route
             path="/login"
             element={<LoginPage handleSignUpOrLogin={handleSignUpOrLogin} />}
@@ -41,7 +41,7 @@ function App() {
             path="/signup"
             element={<SignupPage handleSignUpOrLogin={handleSignUpOrLogin} />}
           />
-          <Route path={`/${user?.username}`} element={<UserMain />} />
+          <Route path={`/${user?.username}`} element={<Profile />} />
           <Route path="/new_event" element={<EventNew />}></Route>
           <Route path="/events" element={<EventAll />}></Route>
 
