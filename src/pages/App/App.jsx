@@ -41,7 +41,10 @@ function App() {
             path="/signup"
             element={<SignupPage handleSignUpOrLogin={handleSignUpOrLogin} />}
           />
-          <Route path={`/${user?.username}`} element={<Profile />} />
+          <Route
+            path={`/${user?.username}`}
+            element={<Profile user={user} />}
+          />
           <Route path="/new_event" element={<EventNew />}></Route>
           <Route path="/events" element={<EventAll />}></Route>
 
