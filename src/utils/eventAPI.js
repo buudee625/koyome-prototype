@@ -35,3 +35,15 @@ export function getAll() {
     });
   });
 }
+
+export function deleteEvent(eventID) {
+  return fetch(`${BASE_URL}/${eventID}`, {
+    method: 'DELETE',
+    headers: {
+      Authorization: 'Bearer ' + tokenService.getToken(),
+    },
+  }).then((res) => {
+    if (res.ok) return res.json();
+    throw new Error(res.error, '<< res.error from deleteEvent(): eventAPI');
+  });
+}

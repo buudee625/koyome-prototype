@@ -38,6 +38,7 @@ export default function NewEvent(props) {
     //   '<---e.target.files[0] from handleFileINput: Events_New'
     // );
   }
+
   function printFormData(form) {
     console.log(
       form.forEach((item) => console.log(item)),
@@ -63,6 +64,7 @@ export default function NewEvent(props) {
     try {
       const response = await EventAPI.create(formData);
       console.log(response, '<< response from handleSubmit() Events_New');
+      navigate('/');
     } catch (err) {
       console.log(err.message, '<< err from handleSubmit() Events_New');
     }

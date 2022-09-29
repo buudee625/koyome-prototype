@@ -32,11 +32,10 @@ That's what inspired KoyoMe! The world's calendar where all of the events and ac
 
 ## Dependencies 📦
 
-- dotevn
+- dotenv
 - bcrypt
 - multer
 - jsonwebtoken
 - @fullcalendar/react
 - @fullcalendar/daygrid
-- react-modal
 - react-datetime

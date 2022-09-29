@@ -1,9 +1,20 @@
 // React
 import React from 'react';
 // Semantic
-import { Card, Image } from 'semantic-ui-react';
+import { Card, Image, Button, Icon } from 'semantic-ui-react';
+// Functions
+import * as eventAPI from '../../utils/eventAPI';
 
 export default function EventCard({ event }) {
+  async function handleEventDelete(eventID) {
+    try {
+      const res = await eventAPI.deleteEvent(eventID);
+      console.log(res, '<< res from handleEventDelete(): EventCard ');
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
   return (
     <Card key="" raised>
       <Card.Content textAlign="left">
@@ -26,6 +37,13 @@ export default function EventCard({ event }) {
         <Card.Description>{event.end}</Card.Description>
       </Card.Content>
       <Card.Content extra textAlign={'right'}></Card.Content>
+
+      <Button animated="vertical" onClick={() => handleEventDelete(event._id)}>
+        <Button.Content visible>
+          <Icon name="delete"></Icon>
+        </Button.Content>
+        <Button.Content hidden>Delete Event</Button.Content>
+      </Button>
     </Card>
   );
 }

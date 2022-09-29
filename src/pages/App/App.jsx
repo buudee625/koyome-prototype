@@ -44,6 +44,7 @@ function App() {
           <Route path={`/${user?.username}`} element={<UserMain />} />
           <Route path="/new_event" element={<EventNew />}></Route>
           <Route path="/events" element={<EventAll />}></Route>
+
           {/* <Route path="/*" element={<Navigate to="/" />} /> */}
         </Routes>
       </>

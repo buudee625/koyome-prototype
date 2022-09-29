@@ -5,10 +5,8 @@ import { Segment, Grid, Button } from 'semantic-ui-react';
 import Calendar from '../../components/Calendar/Calendar';
 import PageHeader from '../../components/PageHeader/PageHeader';
 // Import: Dependencies
-import Modal from 'react-modal';
-import UserEventsList from '../../components/UserEventsList/UserEventsList';
 
-Modal.setAppElement('#root');
+import UserEventsList from '../../components/UserEventsList/UserEventsList';
 
 export default function UserMain() {
   return (

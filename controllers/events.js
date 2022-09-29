@@ -41,7 +41,19 @@ async function index(req, res) {
   }
 }
 
+async function deleteEvent(req, res) {
+  try {
+    const eventToDel = await Event.findById(req.params.id);
+    console.log(eventToDel, '<< eventToDel from deleteEvent(): ctrl/events');
+    eventToDel.remove(req.params.id);
+    await eventToDel.save();
+  } catch (err) {
+    res.status(400).json({ err });
+  }
+}
+
 module.exports = {
   index,
   create,
+  deleteEvent,
 };
