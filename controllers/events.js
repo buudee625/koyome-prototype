@@ -16,6 +16,7 @@ async function create(req, res) {
       return res.status(400).json({ err: 'Check Terminal for AWS erro' });
     try {
       const event = await Event.create({
+        user: req.user,
         title: req.body.title,
         start: req.body.start,
         end: req.body.end,

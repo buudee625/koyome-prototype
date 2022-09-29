@@ -10,7 +10,7 @@ import userService from '../../utils/userService';
 import HomePage from '../HomePage/HomePage';
 import UserMain from '../UserMain/UserMain';
 import EventNew from '../Events_New/Events_New';
-import EventAll from '../Events_All/Events_All';
+import EventAll from '../../components/EventsList/EventsList';
 import PageHeader from '../../components/PageHeader/PageHeader';
 
 function App() {
