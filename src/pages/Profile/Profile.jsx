@@ -70,6 +70,7 @@ export default function Profile({ loggedUser }) {
             <Segment inverted>
               {userEvents.map((event) => (
                 <EventsList
+                  event={event}
                   title={event.title}
                   start={event.start}
                   end={event.end}

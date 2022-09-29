@@ -9,7 +9,6 @@ import LoginPage from '../LoginPage/LoginPage';
 import userService from '../../utils/userService';
 import LandingPage from '../LandingPage/LandingPage';
 import Profile from '../Profile/Profile';
-import EventNew from '../Events_New/Events_New';
 import EventAll from '../../components/EventsList/EventsList';
 import PageHeader from '../../components/PageHeader/PageHeader';
 
@@ -45,7 +44,6 @@ function App() {
             path={`/${user?.username}`}
             element={<Profile loggedUser={user} />}
           />
-          <Route path="/new_event" element={<EventNew />}></Route>
           <Route path="/events" element={<EventAll />}></Route>
 
           {/* <Route path="/*" element={<Navigate to="/" />} /> */}

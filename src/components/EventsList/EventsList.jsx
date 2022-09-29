@@ -1,10 +1,11 @@
 import React from 'react';
-import { Segment, List } from 'semantic-ui-react';
+import { List, Icon } from 'semantic-ui-react';
 
-export default function EventsList({ title, start, end }) {
+export default function EventsList({ event, title, start, end }) {
   return (
-    <List animated inverted verticalAlign="middle">
+    <List animated inverted verticalAlign="middle" key={event._id}>
       <List.Item>
+        <Icon name="right triangle" />
         <List.Content>
           <List.Header>{title}</List.Header>
           <List.Description>{start}</List.Description>

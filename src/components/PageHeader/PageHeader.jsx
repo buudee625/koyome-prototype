@@ -27,15 +27,13 @@ export default function PageHeader({ loggedUser, handleLogout }) {
         <Dropdown item icon="bars">
           <Dropdown.Menu>
             <Dropdown.Item>
-              <Link to="/new_event" style={{ color: 'black' }}>
-                New Event
-              </Link>
-            </Dropdown.Item>
-            <Dropdown.Item>
               <Link to="/events" style={{ color: 'black' }}>
                 All Events
               </Link>
             </Dropdown.Item>
+            <Dropdown.Item text="Menu item" />
+            <Dropdown.Item text="Menu item" />
+            <Dropdown.Item text="Menu item" />
             <Dropdown.Item text="Open..." description="ctrl + o" />
             <Dropdown.Divider />
             <Dropdown.Item text="Preferences" icon="setting" />

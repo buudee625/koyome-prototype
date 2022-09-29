@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { Form, Button, Grid } from 'semantic-ui-react';
+import { Form, Button } from 'semantic-ui-react';
 import Datetime from 'react-datetime';
 import * as EventAPI from '../../utils/eventAPI';
 
@@ -15,7 +14,6 @@ export default function FormEvCreate({ setModal, getAllEvents }) {
   const [selectedFile, setSelectedFile] = useState('');
   const [start, setStart] = useState('');
   const [end, setEnd] = useState('');
-  const navigate = useNavigate();
 
   // input detection functions
   function handleInput(e) {
