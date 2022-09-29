@@ -31,9 +31,13 @@ async function create(req, res) {
 }
 
 async function index(req, res) {
-  const event = await Event.find({});
-  console.log(event, '<--event: index()/ctrl/event');
-  res.send(event);
+  try {
+    const events = await Event.find({}).populate('user').exec();
+    console.log(events, '<--event: index()/ctrl/event');
+    res.status(200).json({ data: events });
+  } catch (err) {
+    res.status(400).json({ err });
+  }
 }
 
 module.exports = {
