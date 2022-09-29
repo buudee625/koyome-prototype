@@ -6,6 +6,7 @@ import Calendar from '../../components/Calendar/Calendar';
 import PageHeader from '../../components/PageHeader/PageHeader';
 // Import: Dependencies
 import Modal from 'react-modal';
+import UserEventsList from '../../components/UserEventsList/UserEventsList';
 
 Modal.setAppElement('#root');
 
@@ -15,6 +16,7 @@ export default function UserMain() {
       <Grid.Row>
         <Grid.Column style={{ padding: '0 15rem 0 15rem' }}>
           <Calendar />
+          <UserEventsList />
         </Grid.Column>
       </Grid.Row>
     </Grid>
