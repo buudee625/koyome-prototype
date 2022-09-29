@@ -1,23 +1,31 @@
-import React, { useState, useEffect } from 'react';
-import { Grid, Button, Modal, Icon } from 'semantic-ui-react';
+import React, { useState, useEffect, useCallback } from 'react';
+import { Segment, Grid, Button, Modal, Icon } from 'semantic-ui-react';
 import Calendar from '../../components/Calendar/Calendar';
-import UserEventsList from '../../components/UserEventsList/UserEventsList';
+import EventsList from '../../components/EventsList/EventsList';
 import FormEvCreate from '../../components/Form_EvCreate/Form_EvCreate';
 import * as eventsAPI from '../../utils/eventAPI';
 
-export default function Profile({ user }) {
+export default function Profile({ loggedUser }) {
   const [events, setEvents] = useState([]);
-
+  const [userEvents, setUserEvents] = useState([]);
   // ========== Events Call ==========
-  async function getAllEvents() {
+  const getAllEvents = useCallback(async () => {
     try {
+      // Obtain all events from backend
       const response = await eventsAPI.getAll();
-      console.log(response, '<< data from getEvents(): Events_All');
       setEvents([...response.data]);
+      // Filter all events to only the logged in user
+      const filteredEvents = response.data.filter(
+        (event) => event.user.username === loggedUser.username
+      );
+      setUserEvents([...filteredEvents]);
     } catch (err) {
-      console.log(err.message, '<< err.message from getEvents(): Events_All');
+      console.log(err.message, '<< err.message in getEvents(): Events_All');
     }
-  }
+  }, []);
+
+  console.log(events, '<<< events in Profile()');
+  console.log(userEvents, '<<< userEvents in Profile()');
 
   useEffect(() => {
     getAllEvents();
@@ -59,7 +67,15 @@ export default function Profile({ user }) {
               </Button.Content>
             </Button>
             <Calendar />
-            <UserEventsList />
+            <Segment inverted>
+              {userEvents.map((event) => (
+                <EventsList
+                  title={event.title}
+                  start={event.start}
+                  end={event.end}
+                />
+              ))}
+            </Segment>
           </Grid.Column>
         </Grid.Row>
       </Grid>
@@ -71,7 +87,11 @@ export default function Profile({ user }) {
       >
         <Modal.Header>Create New Event</Modal.Header>
         <Modal.Content>
-          <FormEvCreate user={user} setModal={setModal} />
+          <FormEvCreate
+            loggedUser={loggedUser}
+            setModal={setModal}
+            getAllEvents={getAllEvents}
+          />
         </Modal.Content>
       </Modal>
     </>

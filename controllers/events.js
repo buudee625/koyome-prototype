@@ -34,7 +34,7 @@ async function create(req, res) {
 async function index(req, res) {
   try {
     const events = await Event.find({}).populate('user').exec();
-    console.log(events, '<--event: index()/ctrl/event');
+    // console.log(events, '<--event: index()/ctrl/event');
     res.status(200).json({ data: events });
   } catch (err) {
     res.status(400).json({ err });
@@ -44,7 +44,7 @@ async function index(req, res) {
 async function deleteEvent(req, res) {
   try {
     const eventToDel = await Event.findById(req.params.id);
-    console.log(eventToDel, '<< eventToDel from deleteEvent(): ctrl/events');
+    // console.log(eventToDel, '<< eventToDel from deleteEvent(): ctrl/events');
     eventToDel.remove(req.params.id);
     await eventToDel.save();
   } catch (err) {

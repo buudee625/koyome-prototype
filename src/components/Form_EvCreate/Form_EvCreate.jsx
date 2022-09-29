@@ -4,7 +4,7 @@ import { Form, Button, Grid } from 'semantic-ui-react';
 import Datetime from 'react-datetime';
 import * as EventAPI from '../../utils/eventAPI';
 
-export default function FormEvCreate({ user, setModal }) {
+export default function FormEvCreate({ setModal, getAllEvents }) {
   const [input, setInput] = useState({
     title: '',
     start: '',
@@ -56,6 +56,7 @@ export default function FormEvCreate({ user, setModal }) {
     }
     try {
       setModal({ type: 'CLOSE_MODAL' });
+      getAllEvents();
       const response = await EventAPI.create(formData);
       console.log(response, '<< response from handleSubmit() Events_New');
     } catch (err) {

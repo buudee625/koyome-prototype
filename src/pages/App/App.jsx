@@ -43,7 +43,7 @@ function App() {
           />
           <Route
             path={`/${user?.username}`}
-            element={<Profile user={user} />}
+            element={<Profile loggedUser={user} />}
           />
           <Route path="/new_event" element={<EventNew />}></Route>
           <Route path="/events" element={<EventAll />}></Route>
