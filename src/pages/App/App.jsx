@@ -80,7 +80,17 @@ function App() {
             }
           />
           <Route path="/events" element={<EventAll events={events} />}></Route>
-          <Route path="/events/:id" element={<EventDetails />}></Route>
+          <Route
+            path="/events/:id"
+            element={
+              <EventDetails
+                user={user}
+                getAllEvents={getAllEvents}
+                events={events}
+                setEvents={setEvents}
+              />
+            }
+          ></Route>
 
           {/* <Route path="/*" element={<Navigate to="/" />} /> */}
         </Routes>

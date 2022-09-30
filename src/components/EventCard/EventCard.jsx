@@ -1,19 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Card, Image, Button, Icon } from 'semantic-ui-react';
-import * as eventAPI from '../../utils/eventAPI';
+import { Card, Image } from 'semantic-ui-react';
 
 export default function EventCard({ event, getAllEvents }) {
-  async function handleEventDelete(eventID) {
-    try {
-      const res = await eventAPI.deleteEvent(eventID);
-      console.log(res, '<< res from handleEventDelete(): EventCard ');
-    } catch (err) {
-      console.log(err);
-    }
-    getAllEvents();
-  }
-
   return (
     <Card key={event._id} raised>
       <Image src={`${event?.poster}`} wrapped ui={false} />
@@ -38,13 +27,6 @@ export default function EventCard({ event, getAllEvents }) {
         <Card.Description>{event.end}</Card.Description>
       </Card.Content>
       <Card.Content extra textAlign={'right'}></Card.Content>
-
-      <Button animated="vertical" onClick={() => handleEventDelete(event._id)}>
-        <Button.Content visible>
-          <Icon name="delete"></Icon>
-        </Button.Content>
-        <Button.Content hidden>Delete Event</Button.Content>
-      </Button>
     </Card>
   );
 }

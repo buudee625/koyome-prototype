@@ -3,6 +3,7 @@ const S3 = require('aws-sdk/clients/s3');
 const s3 = new S3();
 const { v4: uuidv4 } = require('uuid');
 const BUCKET_NAME = process.env.AWS_BUCKET_NAME;
+const mongo = require('mongodb');
 
 async function create(req, res) {
   console.log(req.body, '<--req.body: create()/ctrl/event');
@@ -52,11 +53,13 @@ async function show(req, res) {
 async function deleteEvent(req, res) {
   try {
     const eventToDel = await Event.findById(req.params.id);
-    // console.log(eventToDel, '<< eventToDel from deleteEvent(): ctrl/events');
-    eventToDel.remove(req.params.id);
+    console.log(eventToDel, '<< eventToDel from deleteEvent(): ctrl/events');
+    eventToDel.remove({});
+    console.log('1 Document removed');
     await eventToDel.save();
   } catch (err) {
-    res.status(400).json({ err });
+    res.status(500).json(err);
+    console.log(err, '<<< err from deleteEvent(): ctrl/events');
   }
 }
 
