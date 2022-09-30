@@ -51,9 +51,9 @@ export default function LoginPage(props) {
       style={{ height: '100vh', width: '100vw' }}
       verticalAlign="middle"
     >
-      <Grid.Column style={{ maxWidth: 450 }}>
+      <Grid.Column style={{ maxWidth: 600 }}>
         <Header as="h2" textAlign="center" inverted>
-          <Icon name="calendar alternate outline" /> Log-in to your account
+          <Icon name="calendar alternate outline" /> KoyoMe
         </Header>
 
         <Segment placeholder>

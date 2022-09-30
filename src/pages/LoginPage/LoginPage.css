@@ -1,0 +1,38 @@
+body {
+  background-color: #2b3337;
+}
+
+h2.ui.inverted.center.aligned.header {
+  font-family: 'Pacifico';
+}
+button.ui.primary.button {
+  background-color: rgb(4, 182, 46);
+  text-transform: uppercase;
+  width: 280px;
+  border-radius: 3px;
+}
+
+button.ui.primary.button:hover {
+  background-color: rgb(0, 121, 28);
+}
+
+.ui.placeholder.segment {
+  background: #363b40;
+}
+
+.ui.form .field .ui.input input {
+  background-color: #3b4147;
+}
+
+button.ui.big.button {
+  color: white;
+  background-color: rgb(4, 182, 46);
+  width: 280px;
+  border-radius: 3px;
+}
+
+button.ui.big.button::before {
+  opacity: 0;
+  background: rgba(255, 255, 255, 0.1);
+  transform: scale(1, 0.1);
+}
