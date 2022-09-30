@@ -1,11 +1,35 @@
-import React from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
+import { useParams } from 'react-router-dom';
 import { Segment, Grid, Button, Modal, Icon } from 'semantic-ui-react';
 import Calendar from '../../components/Calendar/Calendar';
 import EventsList from '../../components/EventsList/EventsList';
 import FormEvCreate from '../../components/Form_EvCreate/Form_EvCreate';
+import * as eventsAPI from '../../utils/eventAPI';
 
-export default function Profile({ user, userEvents, getAllEvents }) {
+export default function Profile({ user, getAllEvents }) {
+  const [userEvents, setUserEvents] = useState([]);
+  const { username } = useParams();
+
+  // ========== Calls ==========
+  const getUserEvents = useCallback(async () => {
+    try {
+      const response = await eventsAPI.getAll();
+      const filteredEvents = response.data.filter(
+        (event) => event.user?.username === username
+      );
+      setUserEvents([...filteredEvents]);
+    } catch (err) {
+      console.log(err.message, '<< err.message < getUserEvents < Profile');
+    }
+  }, [username]);
+  console.log(userEvents, '<< userEvents < getUserEvents < Profile');
+  useEffect(() => {
+    console.log('useEfx in Profile()');
+    getUserEvents();
+  }, [getUserEvents]);
+
   // ========== Modal ==========
+
   function modalReducer(state, action) {
     switch (action.type) {
       case 'OPEN_MODAL':

@@ -19,7 +19,6 @@ function App() {
   // ========== States ==========
   const [user, setUser] = useState(userService.getUser());
   const [events, setEvents] = useState([]);
-  const [userEvents, setUserEvents] = useState([]);
   const navigate = useNavigate();
 
   // ========== Call Function ==========
@@ -29,14 +28,10 @@ function App() {
       const response = await eventsAPI.getAll();
       setEvents([...response.data]);
       // Filter all events to only the logged in user
-      const filteredEvents = response.data.filter(
-        (event) => event.user?.username === user?.username
-      );
-      setUserEvents([...filteredEvents]);
     } catch (err) {
       console.log(err.message, '<< err.message in getEvents(): App()');
     }
-  }, [user?.username, setEvents]);
+  }, [setEvents]);
 
   // console.log(events, '<<< events in App()');
   // console.log(userEvents, '<<< userEvents in App()');
@@ -70,14 +65,8 @@ function App() {
             element={<SignupPage handleSignUpOrLogin={handleSignUpOrLogin} />}
           />
           <Route
-            path={`/${user?.username}`}
-            element={
-              <Profile
-                user={user}
-                userEvents={userEvents}
-                getAllEvents={getAllEvents}
-              />
-            }
+            path="/:username"
+            element={<Profile user={user} getAllEvents={getAllEvents} />}
           />
           <Route path="/events" element={<EventAll events={events} />}></Route>
           <Route
