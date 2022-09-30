@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import {
   Container,
@@ -15,19 +15,19 @@ export default function EventDetails({ user, getAllEvents }) {
   const { id } = useParams();
   const nav = useNavigate();
 
-  async function getOneEvent() {
+  const getOneEvent = useCallback(async () => {
     try {
       const res = await eventAPI.getOne(id);
       setOneEvent(res.data);
     } catch (err) {
       console.log(err, '<<< err from getOneEvent()');
     }
-  }
+  }, [id]);
 
   useEffect(() => {
     console.log('useEfx from EventDetails()');
     getOneEvent();
-  }, []);
+  }, [getOneEvent]);
 
   async function handleEventDelete(eventID) {
     try {

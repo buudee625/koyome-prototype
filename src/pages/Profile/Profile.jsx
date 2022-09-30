@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useParams } from 'react-router-dom';
-import { Segment, Grid, Button, Modal, Icon } from 'semantic-ui-react';
+import { Segment, Grid, Button, Modal, Icon, Image } from 'semantic-ui-react';
 import Calendar from '../../components/Calendar/Calendar';
 import EventsList from '../../components/EventsList/EventsList';
 import FormEvCreate from '../../components/Form_EvCreate/Form_EvCreate';
@@ -52,18 +52,22 @@ export default function Profile({ user, getAllEvents }) {
       <Grid>
         <Grid.Row>
           <Grid.Column style={{ padding: '0 15rem 0 15rem' }}>
-            <Button
-              animated="vertical"
-              onClick={() =>
-                setModal({ type: 'OPEN_MODAL', dimmer: 'blurring' })
-              }
-              style={{ width: '10rem' }}
-            >
-              <Button.Content hidden>Add New Event</Button.Content>
-              <Button.Content visible>
-                <Icon name="calendar plus outline" />
-              </Button.Content>
-            </Button>
+            {user.username === username ? (
+              <Button
+                animated="vertical"
+                onClick={() =>
+                  setModal({ type: 'OPEN_MODAL', dimmer: 'blurring' })
+                }
+                style={{ width: '10rem' }}
+              >
+                <Button.Content hidden>Add New Event</Button.Content>
+                <Button.Content visible>
+                  <Icon name="calendar plus outline" />
+                </Button.Content>
+              </Button>
+            ) : (
+              ''
+            )}
             <Calendar userEvents={userEvents} />
             <Segment inverted>
               {userEvents.map((event) => (

@@ -3,7 +3,6 @@ const S3 = require('aws-sdk/clients/s3');
 const s3 = new S3();
 const { v4: uuidv4 } = require('uuid');
 const BUCKET_NAME = process.env.AWS_BUCKET_NAME;
-const mongo = require('mongodb');
 
 async function create(req, res) {
   console.log(req.body, '<--req.body: create()/ctrl/event');
