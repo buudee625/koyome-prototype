@@ -1,36 +1,10 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React from 'react';
 import { Segment, Grid, Button, Modal, Icon } from 'semantic-ui-react';
 import Calendar from '../../components/Calendar/Calendar';
 import EventsList from '../../components/EventsList/EventsList';
 import FormEvCreate from '../../components/Form_EvCreate/Form_EvCreate';
-import * as eventsAPI from '../../utils/eventAPI';
 
-export default function Profile({ loggedUser }) {
-  const [events, setEvents] = useState([]);
-  const [userEvents, setUserEvents] = useState([]);
-  // ========== Events Call ==========
-  const getAllEvents = useCallback(async () => {
-    try {
-      // Obtain all events from backend
-      const response = await eventsAPI.getAll();
-      setEvents([...response.data]);
-      // Filter all events to only the logged in user
-      const filteredEvents = response.data.filter(
-        (event) => event.user.username === loggedUser.username
-      );
-      setUserEvents([...filteredEvents]);
-    } catch (err) {
-      console.log(err.message, '<< err.message in getEvents(): Events_All');
-    }
-  }, []);
-
-  console.log(events, '<<< events in Profile()');
-  console.log(userEvents, '<<< userEvents in Profile()');
-
-  useEffect(() => {
-    getAllEvents();
-  }, []);
-
+export default function Profile({ user, userEvents, getAllEvents }) {
   // ========== Modal ==========
   function modalReducer(state, action) {
     switch (action.type) {
@@ -66,11 +40,12 @@ export default function Profile({ loggedUser }) {
                 <Icon name="calendar plus outline" />
               </Button.Content>
             </Button>
-            <Calendar />
+            <Calendar userEvents={userEvents} />
             <Segment inverted>
               {userEvents.map((event) => (
                 <EventsList
-                  event={event}
+                  key={event._id}
+                  id={event._id}
                   title={event.title}
                   start={event.start}
                   end={event.end}
@@ -89,7 +64,7 @@ export default function Profile({ loggedUser }) {
         <Modal.Header>Create New Event</Modal.Header>
         <Modal.Content>
           <FormEvCreate
-            loggedUser={loggedUser}
+            user={user}
             setModal={setModal}
             getAllEvents={getAllEvents}
           />

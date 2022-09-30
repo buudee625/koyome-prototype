@@ -1,17 +1,17 @@
-// Import: React
-import React, { useState } from 'react';
-// Import: Semantics
+import React from 'react';
 import { Segment } from 'semantic-ui-react';
-// Import: Components
-
-// Import: Packages
 import FullCalendar from '@fullcalendar/react'; // must go before plugins
 import dayGridPlugin from '@fullcalendar/daygrid'; // a plugin!
 
-export default function Calendar() {
+export default function Calendar({ userEvents }) {
+  console.log(userEvents, '<<< userEvents from Cal');
   return (
     <Segment>
-      <FullCalendar plugins={[dayGridPlugin]} initialView="dayGridMonth" />
+      <FullCalendar
+        plugins={[dayGridPlugin]}
+        initialView="dayGridMonth"
+        events={userEvents}
+      />
     </Segment>
   );
 }

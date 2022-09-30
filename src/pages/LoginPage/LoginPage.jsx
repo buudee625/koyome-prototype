@@ -8,7 +8,6 @@ import {
   Form,
   Grid,
   Header,
-  Image,
   Message,
   Segment,
   Divider,

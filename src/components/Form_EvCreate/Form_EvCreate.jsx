@@ -31,12 +31,12 @@ export default function FormEvCreate({ setModal, getAllEvents }) {
     // );
   }
 
-  function printFormData(form) {
-    console.log(
-      form.forEach((item) => console.log(item)),
-      ' <---formData'
-    );
-  }
+  //   function printFormData(form) {
+  //     console.log(
+  //       form.forEach((item) => console.log(item)),
+  //       ' <---formData'
+  //     );
+  //   }
 
   // call functions
   async function handleSubmit(e) {
@@ -54,12 +54,12 @@ export default function FormEvCreate({ setModal, getAllEvents }) {
     }
     try {
       setModal({ type: 'CLOSE_MODAL' });
-      getAllEvents();
       const response = await EventAPI.create(formData);
       console.log(response, '<< response from handleSubmit() Events_New');
     } catch (err) {
       console.log(err.message, '<< err from handleSubmit() Events_New');
     }
+    getAllEvents();
   }
 
   function handleStart(moObj) {

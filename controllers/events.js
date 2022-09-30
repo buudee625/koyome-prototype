@@ -2,7 +2,6 @@ const Event = require('../models/event');
 const S3 = require('aws-sdk/clients/s3');
 const s3 = new S3();
 const { v4: uuidv4 } = require('uuid');
-const { post } = require('../routes/api/users');
 const BUCKET_NAME = process.env.AWS_BUCKET_NAME;
 
 async function create(req, res) {
@@ -41,6 +40,15 @@ async function index(req, res) {
   }
 }
 
+async function show(req, res) {
+  try {
+    const event = await Event.findById(req.params.id);
+    res.status(200).json({ data: event });
+  } catch (err) {
+    res.status(400).json({ err });
+  }
+}
+
 async function deleteEvent(req, res) {
   try {
     const eventToDel = await Event.findById(req.params.id);
@@ -54,6 +62,7 @@ async function deleteEvent(req, res) {
 
 module.exports = {
   index,
+  show,
   create,
   deleteEvent,
 };
