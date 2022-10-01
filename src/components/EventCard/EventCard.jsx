@@ -1,6 +1,7 @@
 import React from 'react';
+import './EventCard.css';
 import { Link } from 'react-router-dom';
-import { Card, Image } from 'semantic-ui-react';
+import { Card, Image, Button, Container } from 'semantic-ui-react';
 
 export default function EventCard({ event }) {
   function prettifyDate(ISOStr) {
@@ -24,27 +25,36 @@ export default function EventCard({ event }) {
   console.log(prettifyDate(event.start));
 
   return (
-    <Card key={event._id} raised>
-      <Image src={`${event?.poster}`} wrapped ui={false} />
-      <Card.Content textAlign="left">
-        <Card.Header>
-          <Link to={`/events/${event._id}`}>{event.title}</Link>
-        </Card.Header>
-      </Card.Content>
-      <Card.Content>
-        <Image
-          size="large"
-          avatar
-          src={
-            event?.user?.photoUrl
-              ? event.user.photoUrl
-              : 'https://react.semantic-ui.com/images/wireframe/square-image.png'
-          }
-        />
-        <Link to={`/${event?.user?.username}`}>{event?.user?.username}</Link>
-        <Card.Description>{event.start}</Card.Description>
-      </Card.Content>
-      <Card.Content extra textAlign={'right'}></Card.Content>
+    <Card key={event._id} raised style={{ width: '340px', height: '700px' }}>
+      <Container className="container">
+        <Image src={`${event?.poster}`} wrapped ui={false} />
+        <Container className="overlay">
+          <div>
+            <Card.Header id="overlay-text">
+              <Container className="event-title">{event.title}</Container>
+            </Card.Header>
+            <Image
+              size="large"
+              avatar
+              src={
+                event?.user?.photoUrl
+                  ? event.user.photoUrl
+                  : 'https://react.semantic-ui.com/images/wireframe/square-image.png'
+              }
+            />
+            <Link to={`/${event?.user?.username}`} className="username">
+              {event?.user?.username}
+            </Link>
+
+            <Card.Description className="time">
+              Starting: {event.start}
+            </Card.Description>
+            <Link to={`/events/${event._id}`} className="event-title">
+              <Button className="more-details">More Details</Button>
+            </Link>
+          </div>
+        </Container>
+      </Container>
     </Card>
   );
 }

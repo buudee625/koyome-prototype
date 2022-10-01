@@ -1,4 +1,5 @@
 import React from 'react';
+import './EventAll.css';
 import EventCard from '../../components/EventCard/EventCard';
 import { Grid, Card } from 'semantic-ui-react';
 
