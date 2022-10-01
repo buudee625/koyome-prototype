@@ -2,7 +2,27 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Card, Image } from 'semantic-ui-react';
 
-export default function EventCard({ event, getAllEvents }) {
+export default function EventCard({ event }) {
+  function prettifyDate(ISOStr) {
+    const monthNames = [
+      'January',
+      'February',
+      'March',
+      'April',
+      'May',
+      'June',
+      'July',
+      'August',
+      'September',
+      'October',
+      'November',
+      'December',
+    ];
+    const dateString = new Date(ISOStr);
+    return dateString.toISOString().substring(0, 10);
+  }
+  console.log(prettifyDate(event.start));
+
   return (
     <Card key={event._id} raised>
       <Image src={`${event?.poster}`} wrapped ui={false} />
@@ -23,7 +43,6 @@ export default function EventCard({ event, getAllEvents }) {
         />
         <Link to={`/${event?.user?.username}`}>{event?.user?.username}</Link>
         <Card.Description>{event.start}</Card.Description>
-        <Card.Description>{event.end}</Card.Description>
       </Card.Content>
       <Card.Content extra textAlign={'right'}></Card.Content>
     </Card>
