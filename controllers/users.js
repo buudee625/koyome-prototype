@@ -12,6 +12,7 @@ const SECRET = process.env.SECRET;
 module.exports = {
   signup,
   login,
+  profile,
 };
 
 async function signup(req, res) {
@@ -79,6 +80,17 @@ async function login(req, res) {
     });
   } catch (err) {
     return res.status(401).json({ err: 'error message' });
+  }
+}
+
+async function profile(req, res) {
+  try {
+    const user = await User.findOne({ username: req.params.username });
+    if (!user) return res.status(404).json({ error: 'User not found' });
+    res.status(200).json({ data: user });
+  } catch (err) {
+    console.log(err.message, ' <- profile controller');
+    res.status(400).json({ error: 'Something went wrong' });
   }
 }
 

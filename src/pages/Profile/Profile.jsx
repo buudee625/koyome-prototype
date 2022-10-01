@@ -1,16 +1,26 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useParams } from 'react-router-dom';
-import { Segment, Grid, Button, Modal, Icon, Image } from 'semantic-ui-react';
 import Calendar from '../../components/Calendar/Calendar';
 import EventsList from '../../components/EventsList/EventsList';
 import FormEvCreate from '../../components/Form_EvCreate/Form_EvCreate';
 import * as eventsAPI from '../../utils/eventAPI';
+import userService from '../../utils/userService';
+import {
+  Segment,
+  Grid,
+  Button,
+  Modal,
+  Icon,
+  Image,
+  Header,
+} from 'semantic-ui-react';
 
 export default function Profile({ user, getAllEvents }) {
   const [userEvents, setUserEvents] = useState([]);
+  const [profileUser, setProfileUser] = useState({});
   const { username } = useParams();
 
-  // ========== Calls ==========
+  // ========== Event Calls ==========
   const getUserEvents = useCallback(async () => {
     try {
       const response = await eventsAPI.getAll();
@@ -22,14 +32,27 @@ export default function Profile({ user, getAllEvents }) {
       console.log(err.message, '<< err.message < getUserEvents < Profile');
     }
   }, [username]);
-  console.log(userEvents, '<< userEvents < getUserEvents < Profile');
+  // console.log(userEvents, '<< userEvents < getUserEvents < Profile');
+
+  // ========== User Calls ==========
+  const getProfile = useCallback(async () => {
+    try {
+      const response = await userService.getProfile(username);
+      setProfileUser(response.data);
+    } catch (err) {
+      console.log(err.message);
+    }
+  }, [username]);
+  // console.log(profileUser, '<< profileUser < getUserEvents < Profile');
+
+  // ========== useEffect ==========
   useEffect(() => {
     console.log('useEfx in Profile()');
     getUserEvents();
-  }, [getUserEvents]);
+    getProfile();
+  }, [getUserEvents, getProfile]);
 
   // ========== Modal ==========
-
   function modalReducer(state, action) {
     switch (action.type) {
       case 'OPEN_MODAL':
@@ -68,6 +91,19 @@ export default function Profile({ user, getAllEvents }) {
             ) : (
               ''
             )}
+
+            <Header inverted as="h3" floated="right">
+              <Image
+                size="large"
+                avatar
+                src={
+                  profileUser.photoUrl
+                    ? profileUser.photoUrl
+                    : 'https://react.semantic-ui.com/images/wireframe/square-image.png'
+                }
+              />
+              {profileUser.username}
+            </Header>
             <Calendar userEvents={userEvents} />
             <Segment inverted>
               {userEvents.map((event) => (
