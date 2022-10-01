@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import './EventDetails.css';
 import {
   Container,
   Grid,
@@ -12,7 +13,6 @@ import * as eventAPI from '../../utils/eventAPI';
 
 export default function EventDetails({ user, prettifyDate, getAllEvents }) {
   const [oneEvent, setOneEvent] = useState({});
-  const [eventUser, setEventUser] = useState('');
   const { id } = useParams();
   const nav = useNavigate();
 
@@ -64,24 +64,31 @@ export default function EventDetails({ user, prettifyDate, getAllEvents }) {
               {oneEvent.description}
             </Header>
             <Header as="h3" inverted>
-              {`Hosted by: ${oneEvent.user}`}
+              Hosted by:
+              <br />
+              <Image avatar src={oneEvent?.user?.photoUrl}></Image>
+              {oneEvent?.user?.username}
             </Header>
           </Grid.Column>
         </Grid.Row>
         <Grid.Column width={7}>
-          <Image src={oneEvent.poster} alt="poster" />
+          <Image id="poster" src={oneEvent.poster} alt="poster" />
         </Grid.Column>
         <Grid.Row>
-          <Button
-            style={{ width: '15rem' }}
-            animated="vertical"
-            onClick={() => handleEventDelete(oneEvent._id)}
-          >
-            <Button.Content visible>
-              <Icon name="delete"></Icon>
-            </Button.Content>
-            <Button.Content hidden>Delete Event</Button.Content>
-          </Button>
+          {oneEvent?.user?.username === user.username ? (
+            <Button
+              style={{ width: '15rem' }}
+              animated="vertical"
+              onClick={() => handleEventDelete(oneEvent._id)}
+            >
+              <Button.Content visible>
+                <Icon name="delete"></Icon>
+              </Button.Content>
+              <Button.Content hidden>Delete Event</Button.Content>
+            </Button>
+          ) : (
+            ''
+          )}
         </Grid.Row>
       </Grid>
     </Container>

@@ -1,0 +1,4 @@
+div.ui.container:hover img#poster {
+  transform: none;
+  transition: none;
+}
