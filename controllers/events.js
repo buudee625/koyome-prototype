@@ -42,7 +42,7 @@ async function index(req, res) {
 
 async function show(req, res) {
   try {
-    const event = await Event.findById(req.params.id);
+    const event = await Event.findById(req.params.id).populate('user').exec();
     res.status(200).json({ data: event });
   } catch (err) {
     res.status(400).json({ err });

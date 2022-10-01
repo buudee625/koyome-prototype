@@ -40,6 +40,24 @@ function App() {
     getAllEvents();
   }, [getAllEvents]);
 
+  // ========== Utility ==========
+  function prettifyDate(ISOStr, option) {
+    const dateString = new Date(ISOStr);
+    const options = {
+      weekday: 'long',
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+    };
+    if (option === 'date') {
+      return dateString.toLocaleDateString(undefined, options);
+    } else if (option === 'time') {
+      return dateString.toLocaleTimeString();
+    } else {
+      return dateString.toLocaleString();
+    }
+  }
+
   function handleSignUpOrLogin() {
     setUser(userService.getUser()); // getting the user from localstorage decoding the jwt
   }
@@ -68,15 +86,17 @@ function App() {
             path="/:username"
             element={<Profile user={user} getAllEvents={getAllEvents} />}
           />
-          <Route path="/events" element={<EventAll events={events} />}></Route>
+          <Route
+            path="/events"
+            element={<EventAll events={events} prettifyDate={prettifyDate} />}
+          ></Route>
           <Route
             path="/events/:id"
             element={
               <EventDetails
                 user={user}
                 getAllEvents={getAllEvents}
-                events={events}
-                setEvents={setEvents}
+                prettifyDate={prettifyDate}
               />
             }
           ></Route>

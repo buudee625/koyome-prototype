@@ -10,11 +10,13 @@ import {
 } from 'semantic-ui-react';
 import * as eventAPI from '../../utils/eventAPI';
 
-export default function EventDetails({ user, getAllEvents }) {
+export default function EventDetails({ user, prettifyDate, getAllEvents }) {
   const [oneEvent, setOneEvent] = useState({});
+  const [eventUser, setEventUser] = useState('');
   const { id } = useParams();
   const nav = useNavigate();
 
+  // ========== Calls ========== //
   const getOneEvent = useCallback(async () => {
     try {
       const res = await eventAPI.getOne(id);
@@ -29,6 +31,10 @@ export default function EventDetails({ user, getAllEvents }) {
     getOneEvent();
   }, [getOneEvent]);
 
+  const startDate = prettifyDate(oneEvent.start);
+  const endDate = prettifyDate(oneEvent.end);
+
+  // ========== Handler ========== //
   async function handleEventDelete(eventID) {
     try {
       const res = await eventAPI.deleteEvent(eventID);
@@ -49,13 +55,16 @@ export default function EventDetails({ user, getAllEvents }) {
               {oneEvent.title}
             </Header>
             <Header as="h3" inverted>
-              {oneEvent.start}
+              {startDate}
             </Header>
             <Header as="h3" inverted>
-              {oneEvent.end}
+              {endDate}
             </Header>
             <Header as="h3" inverted>
               {oneEvent.description}
+            </Header>
+            <Header as="h3" inverted>
+              {`Hosted by: ${oneEvent.user}`}
             </Header>
           </Grid.Column>
         </Grid.Row>
