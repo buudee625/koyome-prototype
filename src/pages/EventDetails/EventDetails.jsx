@@ -109,10 +109,7 @@ export default function EventDetails({ user, prettifyDate, getAllEvents }) {
               <p>{startDate}</p>
               <Header as="h5">End Time</Header>
               <p>{endDate}</p>
-              <TwitterLikeButton
-                isLiked={isLiked}
-                onClick={clickHandler}
-              ></TwitterLikeButton>
+              <TwitterLikeButton isLiked={isLiked} onClick={clickHandler} />
               <Label circular color="red">
                 {oneEvent?.likes?.length}
               </Label>

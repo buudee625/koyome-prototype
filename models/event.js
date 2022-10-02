@@ -19,6 +19,7 @@ const eventSchema = new mongoose.Schema(
       required: true,
       default: Date.now,
     },
+    location: String,
     poster: String,
     eventUrl: String,
     description: String,
