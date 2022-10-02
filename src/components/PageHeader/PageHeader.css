@@ -1,0 +1,11 @@
+h2#logo.ui.header > a {
+  font-family: 'Pacifico';
+}
+
+div.ui.bordeless.inverted.menu {
+  padding: 10px 0 5px 0;
+}
+
+div.ui.inverted.menu {
+  border-radius: 0;
+}
