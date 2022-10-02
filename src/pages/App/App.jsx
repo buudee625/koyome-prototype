@@ -100,6 +100,7 @@ function App() {
             path="/events"
             element={
               <EventAll
+                user={user}
                 events={events}
                 prettifyDate={prettifyDate}
                 loading={loading}

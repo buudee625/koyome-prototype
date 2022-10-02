@@ -7,7 +7,11 @@ export default function EventCard({ event, prettifyDate }) {
   const startDate = prettifyDate(event.start);
 
   return (
-    <Card key={event._id} raised style={{ width: '340px', height: '700px' }}>
+    <Card
+      key={event._id}
+      raised
+      style={{ width: '340px', height: 'fit-content' }}
+    >
       <Container id="container">
         <Image id="card-poster" src={`${event?.poster}`} wrapped ui={false} />
         <Container className="overlay">
