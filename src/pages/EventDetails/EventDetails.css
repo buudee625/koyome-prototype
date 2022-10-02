@@ -2,3 +2,34 @@ div.ui.container:hover img#poster {
   transform: none;
   transition: none;
 }
+
+div.ui.container img#poster {
+  flex-shrink: 0;
+  min-width: 100%;
+  min-height: 100%;
+}
+
+#event-hero {
+  height: 500px;
+  position: absolute;
+  border-radius: 0;
+  left: 0;
+  right: 0;
+  padding: 0;
+  box-shadow: none;
+  border-width: inherit;
+  background-color: transparent;
+  overflow: hidden;
+  margin-top: -113px;
+}
+
+#gaussian-poster {
+  width: 100%;
+  /* overflow: hidden; */
+  height: 100%;
+  object-fit: cover;
+  filter: blur(50px) brightness(0.9);
+  -webkit-filter: blur(18px);
+  box-shadow: none;
+  display: inline-block;
+}

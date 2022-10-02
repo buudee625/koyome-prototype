@@ -1,18 +1,23 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import TwitterLikeButton from 'twitter-like-button';
 import './EventDetails.css';
 import {
   Container,
+  Segment,
   Grid,
   Header,
   Image,
   Button,
   Icon,
+  Label,
 } from 'semantic-ui-react';
 import * as eventAPI from '../../utils/eventAPI';
+import * as likesAPI from '../../utils/likesAPI';
 
 export default function EventDetails({ user, prettifyDate, getAllEvents }) {
   const [oneEvent, setOneEvent] = useState({});
+  const [clicked, setClicked] = useState(false);
   const { id } = useParams();
   const nav = useNavigate();
 
@@ -34,7 +39,7 @@ export default function EventDetails({ user, prettifyDate, getAllEvents }) {
   const startDate = prettifyDate(oneEvent.start);
   const endDate = prettifyDate(oneEvent.end);
 
-  // ========== Handler ========== //
+  // ========== Event Funcs ========== //
   async function handleEventDelete(eventID) {
     try {
       const res = await eventAPI.deleteEvent(eventID);
@@ -46,50 +51,105 @@ export default function EventDetails({ user, prettifyDate, getAllEvents }) {
     getAllEvents();
   }
 
+  // ========== Like Funcs ========== //
+  async function addLike(eventID) {
+    // Where is the postId defined in the UI?
+
+    try {
+      const response = await likesAPI.create(eventID);
+      console.log(response, '<--- addlike() reaponse');
+      setClicked(true);
+      getOneEvent();
+    } catch (err) {
+      console.log(err, '<--- err from addLike(): EventDetails');
+    }
+  }
+
+  async function removeLike(likeId) {
+    try {
+      const response = await likesAPI.removeLike(likeId);
+      console.log(response, '<--- removelike() response');
+      setClicked(false);
+      getOneEvent();
+    } catch (err) {
+      console.log(err, '<--- err from removeLike(): EventDetails');
+    }
+  }
+
+  const likedIndex = oneEvent?.likes?.findIndex(
+    (like) => like.username === user.username
+  );
+  const isLiked = likedIndex > -1 ? true : false;
+  const clickHandler =
+    likedIndex > -1
+      ? () => removeLike(oneEvent.likes[likedIndex]._id)
+      : () => addLike(oneEvent._id);
+
   return (
-    <Container textAlign="center" style={{ marginTop: '5em' }}>
-      <Grid style={{ width: '100vw' }}>
-        <Grid.Row>
-          <Grid.Column width={7}>
-            <Header as="h3" inverted>
-              {oneEvent.title}
-            </Header>
-            <Header as="h3" inverted>
-              {startDate}
-            </Header>
-            <Header as="h3" inverted>
-              {endDate}
-            </Header>
-            <Header as="h3" inverted>
-              {oneEvent.description}
-            </Header>
-            <Header as="h3" inverted>
-              Hosted by:
-              <br />
-              <Image avatar src={oneEvent?.user?.photoUrl}></Image>
-              {oneEvent?.user?.username}
-            </Header>
-          </Grid.Column>
-        </Grid.Row>
-        <Grid.Column width={7}>
+    <Container textAlign="center">
+      <Segment id="event-hero">
+        <Image src={oneEvent.poster} alt="poster" id="gaussian-poster" />
+      </Segment>
+      <Grid style={{ width: '100vw', marginTop: '10%' }}>
+        <Grid.Column width={6}>
           <Image id="poster" src={oneEvent.poster} alt="poster" />
         </Grid.Column>
-        <Grid.Row>
-          {oneEvent?.user?.username === user.username ? (
-            <Button
-              style={{ width: '15rem' }}
-              animated="vertical"
-              onClick={() => handleEventDelete(oneEvent._id)}
+        <Grid.Column width={6} style={{ textAlign: 'left' }}>
+          <Grid.Row>
+            <Segment
+              style={{
+                padding: '40px',
+                borderRadius: '0',
+                backgroundColor: '#FFEDF3',
+                borderColor: 'transparent',
+              }}
             >
-              <Button.Content visible>
-                <Icon name="delete"></Icon>
-              </Button.Content>
-              <Button.Content hidden>Delete Event</Button.Content>
-            </Button>
-          ) : (
-            ''
-          )}
-        </Grid.Row>
+              <Header as="h1">{oneEvent.title}</Header>
+              <Header as="h5">Start Time</Header>
+              <p>{startDate}</p>
+              <Header as="h5">End Time</Header>
+              <p>{endDate}</p>
+              <TwitterLikeButton
+                isLiked={isLiked}
+                onClick={clickHandler}
+              ></TwitterLikeButton>
+              <Label circular color="red">
+                {oneEvent?.likes?.length}
+              </Label>
+            </Segment>
+            <Segment style={{ borderRadius: '0', padding: '30px' }}>
+              <Header as="h3">Hosted by:</Header>
+              <p>
+                <Image avatar src={oneEvent?.user?.photoUrl}></Image>
+                {oneEvent?.user?.username}
+              </p>
+            </Segment>
+          </Grid.Row>
+          <Grid.Row>
+            <Segment style={{ padding: '40px', borderRadius: '0' }}>
+              <Header as="h3">About this event</Header>
+              <Container>
+                {oneEvent.description}{' '}
+                <Grid.Row>
+                  {oneEvent?.user?.username === user.username ? (
+                    <Button
+                      style={{ width: '15rem' }}
+                      animated="vertical"
+                      onClick={() => handleEventDelete(oneEvent._id)}
+                    >
+                      <Button.Content visible>
+                        <Icon name="delete"></Icon>
+                      </Button.Content>
+                      <Button.Content hidden>Delete Event</Button.Content>
+                    </Button>
+                  ) : (
+                    ''
+                  )}
+                </Grid.Row>
+              </Container>
+            </Segment>
+          </Grid.Row>
+        </Grid.Column>
       </Grid>
     </Container>
   );

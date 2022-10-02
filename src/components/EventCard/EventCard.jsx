@@ -8,8 +8,8 @@ export default function EventCard({ event, prettifyDate }) {
 
   return (
     <Card key={event._id} raised style={{ width: '340px', height: '700px' }}>
-      <Container className="container">
-        <Image src={`${event?.poster}`} wrapped ui={false} />
+      <Container id="container">
+        <Image id="card-poster" src={`${event?.poster}`} wrapped ui={false} />
         <Container className="overlay">
           <div>
             <Card.Header id="overlay-text">
