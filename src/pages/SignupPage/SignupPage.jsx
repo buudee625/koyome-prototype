@@ -4,9 +4,6 @@ import ErrorMessage from '../../components/ErrorMessage/ErrorMessage';
 import userService from '../../utils/userService';
 import { Button, Form, Grid, Header, Icon, Segment } from 'semantic-ui-react';
 
-// Utility functions that don't pertain to the component can
-// be defined outside it
-
 function isPasswordMatch(passwordOne, passwordConf) {
   return passwordOne === passwordConf;
 }
@@ -75,18 +72,10 @@ export default function SignUpPage(props) {
     );
 
     try {
-      await userService.signup(formData); // THIS IS WHERE WE ARE MAKING A REQUEST TO THE SERVER, the response is handled inside function .thens, go at the look at the function
-      // After the line above,
-      // the new token is in localstorage,
-      // so now we can update state
-      props.handleSignUpOrLogin(); // <- call the function from the app component
-      // that gets the token from localstorage, and sets in our App's state
-
-      // navigate whereever after the user has logged in
-      navigate('/'); // this accepts a route you defined in your App.js
+      await userService.signup(formData);
+      props.handleSignUpOrLogin();
+      navigate('/');
     } catch (err) {
-      // the error comes from the throw statement in the signup functions
-      // .then
       console.log(err);
       setError({ message: err.message, passwordError: false });
     }

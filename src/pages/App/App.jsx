@@ -16,18 +16,21 @@ import userService from '../../utils/userService';
 import * as eventsAPI from '../../utils/eventAPI';
 
 function App() {
-  // ========== States ==========
+  // ========== States ========== //
   const [user, setUser] = useState(userService.getUser());
   const [events, setEvents] = useState([]);
+  const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
-  // ========== Call Function ==========
+  // ========== Call Functions ========== //
   const getAllEvents = useCallback(async () => {
     try {
+      setLoading(true);
       // Obtain all events from backend
       const response = await eventsAPI.getAll();
+      // Spread the resposne in setEvent state
       setEvents([...response.data]);
-      // Filter all events to only the logged in user
+      setLoading(false);
     } catch (err) {
       console.log(err.message, '<< err.message in getEvents(): App()');
     }
@@ -40,7 +43,7 @@ function App() {
     getAllEvents();
   }, [getAllEvents]);
 
-  // ========== Utility ==========
+  // ========== Utility ========== //
   function prettifyDate(ISOStr, option) {
     const dateString = new Date(ISOStr);
     const options = {
@@ -88,7 +91,13 @@ function App() {
           />
           <Route
             path="/events"
-            element={<EventAll events={events} prettifyDate={prettifyDate} />}
+            element={
+              <EventAll
+                events={events}
+                prettifyDate={prettifyDate}
+                loading={loading}
+              />
+            }
           ></Route>
           <Route
             path="/events/:id"

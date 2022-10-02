@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useParams } from 'react-router-dom';
 import Calendar from '../../components/Calendar/Calendar';
-import EventsList from '../../components/EventsList/EventsList';
 import FormEvCreate from '../../components/Form_EvCreate/Form_EvCreate';
+import SideNav from '../../components/SideNav/SideNav';
 import * as eventsAPI from '../../utils/eventAPI';
 import userService from '../../utils/userService';
 import {
@@ -84,6 +84,7 @@ export default function Profile({ user, getAllEvents }) {
   return (
     <>
       <Grid>
+        <SideNav userEvents={userEvents} />
         <Grid.Row>
           <Grid.Column style={{ padding: '0 15rem 0 15rem' }}>
             {user.username === username ? (
@@ -120,17 +121,6 @@ export default function Profile({ user, getAllEvents }) {
               {profileUser.username}
             </Header>
             <Calendar themeSystem="Simplex" userEvents={userEvents} />
-            <Segment>
-              {userEvents.map((event) => (
-                <EventsList
-                  key={event._id}
-                  id={event._id}
-                  title={event.title}
-                  start={event.start}
-                  end={event.end}
-                />
-              ))}
-            </Segment>
           </Grid.Column>
         </Grid.Row>
       </Grid>
