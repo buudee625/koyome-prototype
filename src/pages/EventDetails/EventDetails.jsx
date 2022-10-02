@@ -114,7 +114,12 @@ export default function EventDetails({ user, prettifyDate, getAllEvents }) {
               <Header as="h3">Hosted by:</Header>
               <p>
                 <Image avatar src={oneEvent?.user?.photoUrl}></Image>
-                {oneEvent?.user?.username}
+                <Link
+                  to={`/${oneEvent?.user?.username}`}
+                  style={{ color: 'black' }}
+                >
+                  {oneEvent?.user?.username}
+                </Link>
               </p>
               <Label
                 attached="top right"

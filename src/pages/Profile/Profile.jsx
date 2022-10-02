@@ -109,7 +109,7 @@ export default function Profile({ user, getAllEvents }) {
               />
               {profileUser.username}
             </Header>
-            <Calendar userEvents={userEvents} />
+            <Calendar themeSystem="Simplex" userEvents={userEvents} />
             <Segment>
               {userEvents.map((event) => (
                 <EventsList
