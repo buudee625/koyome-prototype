@@ -11,7 +11,7 @@ export default function EventAll({ events, prettifyDate, loading }) {
       {loading ? (
         <Loading />
       ) : (
-        <Card.Group itemsPerRow={4} stackable>
+        <Card.Group itemsPerRow={4}>
           {events.map((event) => (
             <EventCard event={event} prettifyDate={prettifyDate} />
           ))}

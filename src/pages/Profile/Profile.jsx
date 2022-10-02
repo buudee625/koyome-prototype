@@ -3,9 +3,11 @@ import { useParams } from 'react-router-dom';
 import Calendar from '../../components/Calendar/Calendar';
 import FormEvCreate from '../../components/Form_EvCreate/Form_EvCreate';
 import SideNav from '../../components/SideNav/SideNav';
+import Loading from '../../components/Loading/Loading';
 import * as eventsAPI from '../../utils/eventAPI';
 import userService from '../../utils/userService';
 import {
+  Container,
   Segment,
   Grid,
   Button,
@@ -16,10 +18,9 @@ import {
   Form,
 } from 'semantic-ui-react';
 
-export default function Profile({ user, getAllEvents }) {
+export default function Profile({ user, loading, setLoading }) {
   const [userEvents, setUserEvents] = useState([]);
   const [profileUser, setProfileUser] = useState({});
-  const [selectedFile, setSelectedFile] = useState('');
   const { username } = useParams();
 
   // ========== Event Calls ========== //
@@ -39,22 +40,15 @@ export default function Profile({ user, getAllEvents }) {
   // ========== User Calls ========== //
   const getProfile = useCallback(async () => {
     try {
+      setLoading(true);
       const response = await userService.getProfile(username);
       setProfileUser(response.data);
+      setLoading(false);
     } catch (err) {
       console.log(err.message);
     }
   }, [username]);
   // console.log(profileUser, '<< profileUser < getUserEvents < Profile');
-
-  // ========== File Handler ========== //
-  function handleFileInput(e) {
-    setSelectedFile(e.target.files[0]);
-    // console.log(
-    //   e.target.files[0],
-    //   '<---e.target.files[0] from handleFileINput: Events_New'
-    // );
-  }
 
   // ========== useEffect ========== //
   useEffect(() => {
@@ -120,7 +114,11 @@ export default function Profile({ user, getAllEvents }) {
               />
               {profileUser.username}
             </Header>
-            <Calendar themeSystem="Simplex" userEvents={userEvents} />
+            {loading ? (
+              <Loading />
+            ) : (
+              <Calendar themeSystem="Simplex" userEvents={userEvents} />
+            )}
           </Grid.Column>
         </Grid.Row>
       </Grid>
@@ -135,7 +133,7 @@ export default function Profile({ user, getAllEvents }) {
           <FormEvCreate
             user={user}
             setModal={setModal}
-            getAllEvents={getAllEvents}
+            getUserEvents={getUserEvents}
           />
         </Modal.Content>
       </Modal>

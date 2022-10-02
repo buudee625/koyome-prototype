@@ -3,7 +3,7 @@ import { Form, Button } from 'semantic-ui-react';
 import Datetime from 'react-datetime';
 import * as EventAPI from '../../utils/eventAPI';
 
-export default function FormEvCreate({ setModal, getAllEvents }) {
+export default function FormEvCreate({ setModal, getUserEvents }) {
   const [input, setInput] = useState({
     title: '',
     start: '',
@@ -60,7 +60,7 @@ export default function FormEvCreate({ setModal, getAllEvents }) {
     } catch (err) {
       console.log(err.message, '<< err from handleSubmit() Events_New');
     }
-    getAllEvents();
+    getUserEvents();
   }
 
   function handleStart(moObj) {

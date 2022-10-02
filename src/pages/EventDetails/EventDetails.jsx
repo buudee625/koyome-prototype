@@ -109,6 +109,8 @@ export default function EventDetails({ user, prettifyDate, getAllEvents }) {
               <p>{startDate}</p>
               <Header as="h5">End Time</Header>
               <p>{endDate}</p>
+              <Header as="h5">Location</Header>
+              <p>{oneEvent?.location}</p>
             </Segment>
             <Segment style={{ borderRadius: '0', padding: '30px' }}>
               <Header as="h3">Hosted by:</Header>

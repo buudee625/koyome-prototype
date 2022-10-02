@@ -87,7 +87,14 @@ function App() {
           />
           <Route
             path="/:username"
-            element={<Profile user={user} getAllEvents={getAllEvents} />}
+            element={
+              <Profile
+                user={user}
+                getAllEvents={getAllEvents}
+                setLoading={setLoading}
+                loading={loading}
+              />
+            }
           />
           <Route
             path="/events"
