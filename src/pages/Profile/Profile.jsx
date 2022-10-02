@@ -13,14 +13,16 @@ import {
   Icon,
   Image,
   Header,
+  Form,
 } from 'semantic-ui-react';
 
 export default function Profile({ user, getAllEvents }) {
   const [userEvents, setUserEvents] = useState([]);
   const [profileUser, setProfileUser] = useState({});
+  const [selectedFile, setSelectedFile] = useState('');
   const { username } = useParams();
 
-  // ========== Event Calls ==========
+  // ========== Event Calls ========== //
   const getUserEvents = useCallback(async () => {
     try {
       const response = await eventsAPI.getAll();
@@ -34,7 +36,7 @@ export default function Profile({ user, getAllEvents }) {
   }, [username]);
   // console.log(userEvents, '<< userEvents < getUserEvents < Profile');
 
-  // ========== User Calls ==========
+  // ========== User Calls ========== //
   const getProfile = useCallback(async () => {
     try {
       const response = await userService.getProfile(username);
@@ -45,7 +47,16 @@ export default function Profile({ user, getAllEvents }) {
   }, [username]);
   // console.log(profileUser, '<< profileUser < getUserEvents < Profile');
 
-  // ========== useEffect ==========
+  // ========== File Handler ========== //
+  function handleFileInput(e) {
+    setSelectedFile(e.target.files[0]);
+    // console.log(
+    //   e.target.files[0],
+    //   '<---e.target.files[0] from handleFileINput: Events_New'
+    // );
+  }
+
+  // ========== useEffect ========== //
   useEffect(() => {
     console.log('useEfx in Profile()');
     getUserEvents();

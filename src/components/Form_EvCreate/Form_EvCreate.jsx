@@ -16,7 +16,7 @@ export default function FormEvCreate({ setModal, getAllEvents }) {
   const [start, setStart] = useState('');
   const [end, setEnd] = useState('');
 
-  // input detection functions
+  // ========== Input Handlers ========== //
   function handleInput(e) {
     setInput({
       ...input,
