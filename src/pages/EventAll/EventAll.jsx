@@ -13,7 +13,11 @@ export default function EventAll({ events, prettifyDate, loading }) {
       ) : (
         <Card.Group itemsPerRow={4}>
           {events.map((event) => (
-            <EventCard event={event} prettifyDate={prettifyDate} />
+            <EventCard
+              key={event._id}
+              event={event}
+              prettifyDate={prettifyDate}
+            />
           ))}
         </Card.Group>
       )}

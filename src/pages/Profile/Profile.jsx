@@ -15,7 +15,6 @@ import {
   Icon,
   Image,
   Header,
-  Form,
 } from 'semantic-ui-react';
 
 export default function Profile({ user, loading, setLoading }) {
@@ -47,7 +46,7 @@ export default function Profile({ user, loading, setLoading }) {
     } catch (err) {
       console.log(err.message);
     }
-  }, [username]);
+  }, [setLoading, username]);
   // console.log(profileUser, '<< profileUser < getUserEvents < Profile');
 
   // ========== useEffect ========== //

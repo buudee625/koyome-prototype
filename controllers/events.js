@@ -52,11 +52,13 @@ async function show(req, res) {
 
 async function deleteEvent(req, res) {
   try {
-    const eventToDel = await Event.findById(req.params.id);
-    console.log(eventToDel, '<< eventToDel from deleteEvent(): ctrl/events');
-    eventToDel.remove({});
+    // const eventToDel = await Event.findById(req.params.id);
+    // console.log(eventToDel, '<< eventToDel from deleteEvent(): ctrl/events');
+    // eventToDel.remove({});
+    await Event.findByIdAndDelete(req.params.id);
     console.log('1 Document removed');
-    await eventToDel.save();
+    res.status(201).json({});
+    // await eventToDel.save();
   } catch (err) {
     res.status(500).json(err);
     console.log(err, '<<< err from deleteEvent(): ctrl/events');

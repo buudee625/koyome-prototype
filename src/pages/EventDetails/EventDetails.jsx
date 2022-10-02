@@ -44,10 +44,10 @@ export default function EventDetails({ user, prettifyDate, getAllEvents }) {
     try {
       const res = await eventAPI.deleteEvent(eventID);
       console.log(res, '<< res from handleEventDelete(): EventCard ');
+      await nav('/events');
     } catch (err) {
       console.log(err);
     }
-    nav('/events');
     getAllEvents();
   }
 
