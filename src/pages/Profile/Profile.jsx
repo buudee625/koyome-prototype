@@ -107,7 +107,6 @@ export default function Profile({ user, getAllEvents }) {
                 </Button.Content>
               </Button>
             )}
-
             <Header as="h3" floated="right">
               <Image
                 size="large"
