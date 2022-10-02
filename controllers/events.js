@@ -19,6 +19,7 @@ async function create(req, res) {
         title: req.body.title,
         start: req.body.start,
         end: req.body.end,
+        location: req.body.location,
         poster: data.Location,
         eventUrl: req.body.eventUrl,
         description: req.body.description,

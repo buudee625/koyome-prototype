@@ -8,6 +8,7 @@ export default function FormEvCreate({ setModal, getAllEvents }) {
     title: '',
     start: '',
     end: '',
+    location: '',
     eventUrl: '',
     description: '',
   });
@@ -94,7 +95,15 @@ export default function FormEvCreate({ setModal, getAllEvents }) {
       <Form.Field>
         <Datetime name="end" onChange={(date) => handleEnd(date)} />
       </Form.Field>
-      <label htmlFor="event-start">
+      <label htmlFor="location">
+        <strong>Location</strong>
+      </label>
+      <Form.Input
+        name="location"
+        placeholder="Event address"
+        onChange={handleInput}
+      ></Form.Input>
+      <label htmlFor="eventUrl">
         <strong>Event URL</strong>
       </label>
       <Form.Input
@@ -121,7 +130,7 @@ export default function FormEvCreate({ setModal, getAllEvents }) {
           onChange={handleFileInput}
         />
       </Form.Field>
-      <Button positive type="submit">
+      <Button type="submit" style={{ color: 'white', background: '#f9004d' }}>
         Create
       </Button>
     </Form>
