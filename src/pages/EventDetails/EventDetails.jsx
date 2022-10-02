@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useCallback } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { Link, useParams, useNavigate } from 'react-router-dom';
 import TwitterLikeButton from 'twitter-like-button';
 import './EventDetails.css';
 import {
@@ -90,7 +90,7 @@ export default function EventDetails({ user, prettifyDate, getAllEvents }) {
       <Segment id="event-hero">
         <Image src={oneEvent.poster} alt="poster" id="gaussian-poster" />
       </Segment>
-      <Grid style={{ width: '100vw', marginTop: '10%' }}>
+      <Grid style={{ width: '100vw', marginTop: '10%', marginLeft: '2%' }}>
         <Grid.Column width={6}>
           <Image id="poster" src={oneEvent.poster} alt="poster" />
         </Grid.Column>
@@ -109,10 +109,6 @@ export default function EventDetails({ user, prettifyDate, getAllEvents }) {
               <p>{startDate}</p>
               <Header as="h5">End Time</Header>
               <p>{endDate}</p>
-              <TwitterLikeButton isLiked={isLiked} onClick={clickHandler} />
-              <Label circular color="red">
-                {oneEvent?.likes?.length}
-              </Label>
             </Segment>
             <Segment style={{ borderRadius: '0', padding: '30px' }}>
               <Header as="h3">Hosted by:</Header>
@@ -120,6 +116,18 @@ export default function EventDetails({ user, prettifyDate, getAllEvents }) {
                 <Image avatar src={oneEvent?.user?.photoUrl}></Image>
                 {oneEvent?.user?.username}
               </p>
+              <Label
+                attached="top right"
+                style={{ backgroundColor: 'transparent' }}
+              >
+                <TwitterLikeButton
+                  isLiked={isLiked}
+                  onClick={clickHandler}
+                ></TwitterLikeButton>
+                <Label circular color="red">
+                  {oneEvent?.likes?.length}
+                </Label>
+              </Label>
             </Segment>
           </Grid.Row>
           <Grid.Row>
@@ -130,7 +138,7 @@ export default function EventDetails({ user, prettifyDate, getAllEvents }) {
                 <Grid.Row>
                   {oneEvent?.user?.username === user.username ? (
                     <Button
-                      style={{ width: '15rem' }}
+                      style={{ width: '15rem', marginTop: '20px' }}
                       animated="vertical"
                       onClick={() => handleEventDelete(oneEvent._id)}
                     >

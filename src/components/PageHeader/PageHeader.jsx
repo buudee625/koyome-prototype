@@ -9,7 +9,18 @@ export default function PageHeader({ loggedUser, handleLogout }) {
     <Menu borderless>
       <Menu.Item>
         <Header>
-          <Link to="/">KoyoMe</Link>
+          <Link
+            to="/"
+            id="logo"
+            style={{
+              color: '#f9004d',
+              fontFamily: 'Pacifico',
+              fontSize: '20px',
+              letterSpacing: '.05rem',
+            }}
+          >
+            KoyoMe
+          </Link>
         </Header>
       </Menu.Item>
       <Menu.Menu position="right">
@@ -27,7 +38,7 @@ export default function PageHeader({ loggedUser, handleLogout }) {
         </Menu.Item>
         <Dropdown item icon="bars">
           <Dropdown.Menu>
-            <Dropdown.Item link>
+            <Dropdown.Item>
               <Link to="/events" style={{ color: 'black' }}>
                 All Events
               </Link>

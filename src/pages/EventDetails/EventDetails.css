@@ -33,3 +33,23 @@ div.ui.container img#poster {
   box-shadow: none;
   display: inline-block;
 }
+
+button.ui.vertical.animated.button {
+  padding: 0 23px;
+  height: 40px;
+  display: inline-block;
+  border: 2px solid #f9004d;
+  background-color: transparent;
+  border-radius: 4px;
+  font-size: 14px;
+  position: relative;
+
+  letter-spacing: 0.2px;
+  text-transform: uppercase;
+}
+
+button.ui.vertical.animated.button:hover {
+  border: 2px solid #f9004d;
+  color: #fff;
+  background: #f9004d;
+}

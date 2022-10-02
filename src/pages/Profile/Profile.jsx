@@ -78,10 +78,10 @@ export default function Profile({ user, getAllEvents }) {
             {user.username === username ? (
               <Button
                 animated="vertical"
+                style={{ width: '10rem' }}
                 onClick={() =>
                   setModal({ type: 'OPEN_MODAL', dimmer: 'blurring' })
                 }
-                style={{ width: '10rem' }}
               >
                 <Button.Content hidden>Add New Event</Button.Content>
                 <Button.Content visible>
@@ -89,10 +89,15 @@ export default function Profile({ user, getAllEvents }) {
                 </Button.Content>
               </Button>
             ) : (
-              ''
+              <Button animated="vertical" style={{ width: '10rem' }}>
+                <Button.Content hidden>Follow</Button.Content>
+                <Button.Content visible>
+                  <Icon name="user circle" />
+                </Button.Content>
+              </Button>
             )}
 
-            <Header inverted as="h3" floated="right">
+            <Header as="h3" floated="right">
               <Image
                 size="large"
                 avatar
@@ -105,7 +110,7 @@ export default function Profile({ user, getAllEvents }) {
               {profileUser.username}
             </Header>
             <Calendar userEvents={userEvents} />
-            <Segment inverted>
+            <Segment>
               {userEvents.map((event) => (
                 <EventsList
                   key={event._id}
