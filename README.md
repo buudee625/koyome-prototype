@@ -12,6 +12,8 @@ Imagine a calendar with a bit of a social media twist. You can create one or man
 
 That's what inspired KoyoMe! The world's calendar where all of the events and activities are aggregated.
 
+[KoyoMe Ver 0.0.1 Demo](https://koyome-draft.herokuapp.com/)
+
 <br />
 
 # Development 🛠
@@ -22,13 +24,32 @@ That's what inspired KoyoMe! The world's calendar where all of the events and ac
 
 - [Wireframe](https://www.figma.com/file/aW4G1GT5zIy6ftczvNBIUf/KoyoMe-draft?node-id=0%3A1)
 
+<br />
+
+# Screenshots 📷
+
+**Homepage Demo**
+![screen-recording-1](https://i.imgur.com/HVo7xaD.gif)
+
+**Main Calendar View**
+![screenshot-1](https://i.imgur.com/aHXtjJ6.png)
+
+**Event Detail View**
+![screenshot-1](https://i.imgur.com/0LJgXq6.png)
+
+<br />
+
 # Technologies 💿
 
 - MongoDB
+- Mongoose
 - Express
-- React
 - NodeJS
+- React
 - Semantics UI
+- AWS S3
+- JWT Authentication
+- HTML and CSS
 
 ## Dependencies 📦
 
@@ -40,3 +61,13 @@ That's what inspired KoyoMe! The world's calendar where all of the events and ac
 - @fullcalendar/daygrid
 - react-datetime
 - twitter-like-button
+- react-pro-sidebar
+
+</br>
+
+# Future Development ➡️
+
+- Following feature to allow users to follow other user's calendar
+- Ability to create multiple calendars and set visiblity
+- Fully customized calendar
+- Implement Google API to display map of the event location
