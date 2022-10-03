@@ -43,12 +43,11 @@ export default function PageHeader({ loggedUser, handleLogout }) {
                 All Events
               </Link>
             </Dropdown.Item>
-            <Dropdown.Item text="Menu item" />
-            <Dropdown.Item text="Menu item" />
-            <Dropdown.Item text="Menu item" />
-            <Dropdown.Item text="Open..." description="ctrl + o" />
+            <Dropdown.Item text="Followed Calendars" />
+            <Dropdown.Item text="Liked Events" />
+            <Dropdown.Item text="Report A Problem" />
             <Dropdown.Divider />
-            <Dropdown.Item text="Preferences" icon="setting" />
+            <Dropdown.Item text="Profile Settings" icon="setting" />
             <Dropdown.Item
               text="Sign Out"
               onClick={handleLogout}
