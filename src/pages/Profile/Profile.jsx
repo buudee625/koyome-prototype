@@ -6,16 +6,7 @@ import SideNav from '../../components/SideNav/SideNav';
 import Loading from '../../components/Loading/Loading';
 import * as eventsAPI from '../../utils/eventAPI';
 import userService from '../../utils/userService';
-import {
-  Container,
-  Segment,
-  Grid,
-  Button,
-  Modal,
-  Icon,
-  Image,
-  Header,
-} from 'semantic-ui-react';
+import { Grid, Button, Modal, Icon, Image, Header } from 'semantic-ui-react';
 
 export default function Profile({ user, loading, setLoading }) {
   const [userEvents, setUserEvents] = useState([]);
@@ -77,7 +68,7 @@ export default function Profile({ user, loading, setLoading }) {
   return (
     <>
       <Grid>
-        <SideNav userEvents={userEvents} />
+        <SideNav userEvents={userEvents} profileUser={profileUser} />
         <Grid.Row>
           <Grid.Column style={{ padding: '0 15rem 0 15rem' }}>
             {user.username === username ? (

@@ -13,7 +13,7 @@ import { Icon, Container } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import './SideNav.css';
 
-export default function SideNav({ userEvents }) {
+export default function SideNav({ userEvents, profileUser }) {
   const [menuCollapse, setMenuCollapse] = useState(true);
   const menuIconClick = () => {
     menuCollapse ? setMenuCollapse(false) : setMenuCollapse(true);
@@ -28,7 +28,7 @@ export default function SideNav({ userEvents }) {
                 {menuCollapse ? (
                   <Icon name="calendar alternate outline" />
                 ) : (
-                  'Your events'
+                  `${profileUser.username}'s events`
                 )}
               </p>
             </div>
