@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import './EventAll.css';
 import EventCard from '../../components/EventCard/EventCard';
 import Loading from '../../components/Loading/Loading';
+import Footer from '../../components/Footer/Footer';
 import {
   Grid,
   Card,
@@ -44,6 +45,7 @@ export default function EventAll({ user, events, prettifyDate, loading }) {
           </Card.Group>
         )}
       </Grid>
+      <Footer />
     </>
   );
 }

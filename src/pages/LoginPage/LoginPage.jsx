@@ -52,12 +52,17 @@ export default function LoginPage(props) {
       verticalAlign="middle"
     >
       <Grid.Column style={{ maxWidth: 600 }}>
-        <Header as="h2" textAlign="center" inverted>
+        <Header
+          id="loginheader"
+          as="h2"
+          textAlign="center"
+          className="text-focus-in"
+        >
           <Icon name="calendar alternate outline" /> KoyoMe
         </Header>
 
-        <Segment placeholder>
-          <Grid columns={2} relaxed="very" stackable>
+        <Segment placeholder id="login-container">
+          <Grid columns={2} stackable>
             <Grid.Column>
               <Form onSubmit={handleSubmit}>
                 <Form.Input

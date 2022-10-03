@@ -76,7 +76,6 @@ function App() {
       <>
         <PageHeader loggedUser={user} handleLogout={handleLogout} />
         <Routes>
-          <Route path="/" element={<LandingPage />} />
           <Route
             path="/login"
             element={<LoginPage handleSignUpOrLogin={handleSignUpOrLogin} />}
@@ -118,7 +117,7 @@ function App() {
             }
           ></Route>
 
-          {/* <Route path="/*" element={<Navigate to="/" />} /> */}
+          <Route path="/*" element={<Navigate to="/events" />} />
         </Routes>
       </>
     );

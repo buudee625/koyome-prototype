@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import './SignupPage.css';
 import ErrorMessage from '../../components/ErrorMessage/ErrorMessage';
 import userService from '../../utils/userService';
 import { Button, Form, Grid, Header, Icon, Segment } from 'semantic-ui-react';
@@ -93,7 +94,7 @@ export default function SignUpPage(props) {
       verticalAlign="middle"
     >
       <Grid.Column style={{ maxWidth: 450 }}>
-        <Header as="h2" textAlign="center" inverted>
+        <Header as="h2" textAlign="center" id="signup-header">
           <Icon name="calendar alternate outline" /> Sign Up
         </Header>
         <Form onSubmit={handleSubmit}>
@@ -146,10 +147,11 @@ export default function SignUpPage(props) {
                 onChange={handleFileInput}
               />
             </Form.Field>
-            <Button type="submit" className="btn">
+            <Button type="submit" className="btn" id="signup-btn">
               Signup
             </Button>
-            <Link to="/login">Or sign into your account</Link>
+            <br />
+            <Link to="/login">Or log into your account</Link>
           </Segment>
           {error.message ? <ErrorMessage error={error.message} /> : null}
         </Form>

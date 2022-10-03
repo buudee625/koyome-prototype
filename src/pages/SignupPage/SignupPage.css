@@ -1,0 +1,22 @@
+#signup-header {
+  color: #f9004d;
+  font-weight: 900;
+  font-size: 30px;
+  font-family: 'Pacifico';
+  margin-top: 15px;
+}
+
+#signup-btn {
+  background-color: #f9004d;
+  text-transform: uppercase;
+  width: 100px;
+  border-radius: 3px;
+  transition: 0.3s;
+  color: #ffffff;
+  margin-bottom: 8px;
+}
+
+#signup-btn:hover {
+  background-color: #000000;
+  opacity: 1;
+}
