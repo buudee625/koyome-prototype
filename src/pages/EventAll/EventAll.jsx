@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './EventAll.css';
 import EventCard from '../../components/EventCard/EventCard';
@@ -13,7 +13,18 @@ import {
   Button,
 } from 'semantic-ui-react';
 
-export default function EventAll({ user, events, prettifyDate, loading }) {
+export default function EventAll({
+  getAllEvents,
+  user,
+  events,
+  prettifyDate,
+  loading,
+}) {
+  useEffect(() => {
+    console.log('useEfx from EventAll');
+    getAllEvents();
+  }, [getAllEvents]);
+
   return (
     <>
       <Segment id="eventall-hero">
@@ -32,7 +43,9 @@ export default function EventAll({ user, events, prettifyDate, loading }) {
       </Segment>
       <Grid centered columns={3}>
         {loading ? (
-          <Loading />
+          <Grid centered columns={1}>
+            <Loading />
+          </Grid>
         ) : (
           <Card.Group
             itemsPerRow={4}

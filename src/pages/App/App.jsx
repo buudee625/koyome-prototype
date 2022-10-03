@@ -6,7 +6,6 @@ import './App.css';
 // Components
 import SignupPage from '../SignupPage/SignupPage';
 import LoginPage from '../LoginPage/LoginPage';
-import LandingPage from '../LandingPage/LandingPage';
 import Profile from '../Profile/Profile';
 import EventAll from '../../pages/EventAll/EventAll';
 import EventDetails from '../EventDetails/EventDetails';
@@ -103,6 +102,7 @@ function App() {
                 events={events}
                 prettifyDate={prettifyDate}
                 loading={loading}
+                getAllEvents={getAllEvents}
               />
             }
           ></Route>
