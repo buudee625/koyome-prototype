@@ -86,11 +86,18 @@ export default function EventDetails({ user, prettifyDate, getAllEvents }) {
       : () => addLike(oneEvent._id);
 
   return (
-    <Container textAlign="center">
+    <Container>
       <Segment id="event-hero">
         <Image src={oneEvent.poster} alt="poster" id="gaussian-poster" />
       </Segment>
-      <Grid style={{ width: '100vw', marginTop: '10%', marginLeft: '2%' }}>
+      <Grid
+        className=""
+        style={{
+          width: '100vw',
+          marginTop: '10%',
+          marginLeft: '2%',
+        }}
+      >
         <Grid.Column width={6}>
           <Image id="poster" src={oneEvent.poster} alt="poster" />
         </Grid.Column>
@@ -105,11 +112,20 @@ export default function EventDetails({ user, prettifyDate, getAllEvents }) {
               }}
             >
               <Header as="h1">{oneEvent.title}</Header>
-              <Header as="h5">Start Time</Header>
+              <Header as="h5">
+                <Icon name="calendar alternate outline" />
+                <Header.Content>Start Time</Header.Content>
+              </Header>
               <p>{startDate}</p>
-              <Header as="h5">End Time</Header>
+              <Header as="h5">
+                <Icon name="calendar alternate outline" />
+                <Header.Content>End Time</Header.Content>
+              </Header>
               <p>{endDate}</p>
-              <Header as="h5">Location</Header>
+              <Header as="h5">
+                <Icon name="map marker alternate" />
+                <Header.Content>Location</Header.Content>
+              </Header>
               <p>{oneEvent?.location}</p>
             </Segment>
             <Segment style={{ borderRadius: '0', padding: '30px' }}>
@@ -141,7 +157,7 @@ export default function EventDetails({ user, prettifyDate, getAllEvents }) {
             <Segment style={{ padding: '40px', borderRadius: '0' }}>
               <Header as="h3">About this event</Header>
               <Container>
-                {oneEvent.description}{' '}
+                {oneEvent.description}
                 <Grid.Row>
                   {oneEvent?.user?.username === user.username ? (
                     <Button

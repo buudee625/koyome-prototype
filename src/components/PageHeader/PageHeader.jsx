@@ -6,7 +6,7 @@ import './PageHeader.css';
 export default function PageHeader({ loggedUser, handleLogout }) {
   console.log(loggedUser, '<-- loggedUser in header');
   return (
-    <Menu borderless>
+    <Menu borderless className="top-nav">
       <Menu.Item>
         <Header>
           <Link

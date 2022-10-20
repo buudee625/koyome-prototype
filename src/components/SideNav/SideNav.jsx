@@ -44,7 +44,6 @@ export default function SideNav({ userEvents, profileUser }) {
             <Menu>
               {userEvents.map((event) => (
                 <MenuItem>
-                  {' '}
                   <Link to={`/events/${event._id}`} id="sidenav-event-item">
                     {event.title}
                   </Link>

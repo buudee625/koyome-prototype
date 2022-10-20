@@ -9,3 +9,8 @@ div.ui.bordeless.inverted.menu {
 div.ui.inverted.menu {
   border-radius: 0;
 }
+
+.ui.menu {
+  border-radius: 0px;
+  margin: 0;
+}
