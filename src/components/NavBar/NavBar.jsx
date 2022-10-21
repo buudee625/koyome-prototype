@@ -1,12 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Menu, Header, Image, Dropdown } from 'semantic-ui-react';
-import './PageHeader.css';
+import './NavBar.css';
 
-export default function PageHeader({ loggedUser, handleLogout }) {
+export default function NavBar({ loggedUser, handleLogout }) {
   console.log(loggedUser, '<-- loggedUser in header');
   return (
-    <Menu borderless className="top-nav">
+    <Menu borderless className="nav-bar">
       <Menu.Item>
         <Header>
           <Link

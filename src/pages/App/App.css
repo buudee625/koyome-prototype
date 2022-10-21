@@ -1,3 +1,7 @@
+:root {
+  --koyo-main: #f9004d;
+}
+
 .App {
   text-align: center;
 }

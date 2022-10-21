@@ -1,3 +1,7 @@
+.pro-sidebar-header {
+  height: 8rem;
+}
+
 #header {
   position: absolute;
   width: 220px;
@@ -8,7 +12,7 @@
 }
 
 #header .closemenu {
-  color: #f9004d;
+  color: var(--koyo-main);
   position: absolute;
   right: 0;
   z-index: 9999;
@@ -26,7 +30,7 @@
   min-width: 100%;
   min-height: 100%;
   background: #000;
-  height: 950px;
+  height: 100%;
 }
 #header .pro-sidebar.collapsed {
   width: 80px;
@@ -43,7 +47,7 @@
 #header .pro-sidebar-inner .pro-sidebar-layout .logotext p {
   font-size: 18px;
   padding: 12px 20px 10px 10px;
-  color: #f9004d;
+  color: var(--koyo-main);
   font-weight: 600;
   text-align: center;
 }
@@ -51,13 +55,13 @@
   padding: 0 5px;
 }
 #header .pro-sidebar-inner .pro-sidebar-layout ul .pro-inner-item {
-  color: '#f9004d';
+  color: var(--koyo-main);
   margin: 10px 0px;
   font-weight: normal;
 }
 
 #header .pro-sidebar-inner .pro-sidebar-layout ul .pro-inner-item:hover {
-  color: '#f9004d';
+  color: var(--koyo-main);
   margin: 10px 0px;
   font-weight: normal;
   background: #ffedf3;
@@ -65,7 +69,7 @@
 }
 
 #sidenav-event-item:hover {
-  color: #f9004d;
+  color: var(--koyo-main);
   transition: background 400ms;
   transform: translateX(336px);
 }

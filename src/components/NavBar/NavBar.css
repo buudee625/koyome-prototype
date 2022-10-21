@@ -14,3 +14,7 @@ div.ui.inverted.menu {
   border-radius: 0px;
   margin: 0;
 }
+
+.ui.borderless.nav-bar.menu {
+  height: 4rem;
+}

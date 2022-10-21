@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useParams } from 'react-router-dom';
+import './Profile.css';
 import Calendar from '../../components/Calendar/Calendar';
 import FormEvCreate from '../../components/Form_EvCreate/Form_EvCreate';
 import SideNav from '../../components/SideNav/SideNav';
@@ -67,7 +68,7 @@ export default function Profile({ user, loading, setLoading }) {
 
   return (
     <>
-      <Grid>
+      <Grid className="profile-content">
         <SideNav userEvents={userEvents} profileUser={profileUser} />
         <Grid.Row>
           <Grid.Column style={{ padding: '0 15rem 0 15rem' }}>

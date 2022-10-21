@@ -9,7 +9,7 @@ import LoginPage from '../LoginPage/LoginPage';
 import Profile from '../Profile/Profile';
 import EventAll from '../../pages/EventAll/EventAll';
 import EventDetails from '../EventDetails/EventDetails';
-import PageHeader from '../../components/PageHeader/PageHeader';
+import NavBar from '../../components/NavBar/NavBar';
 // APIs
 import userService from '../../utils/userService';
 import * as eventsAPI from '../../utils/eventAPI';
@@ -73,7 +73,7 @@ function App() {
   if (user) {
     return (
       <>
-        <PageHeader loggedUser={user} handleLogout={handleLogout} />
+        <NavBar loggedUser={user} handleLogout={handleLogout} />
         <Routes>
           <Route
             path="/login"

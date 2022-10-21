@@ -6,6 +6,7 @@ import './Map.css';
 export default function Map({ event }) {
   const [geoCode, setGeoCode] = useState({});
   const center = useMemo(() => geoCode, [geoCode]);
+  const GMAP_KEY = process.env.REACT_APP_GMAP_KEY;
 
   const addToGeoCode = useCallback(async () => {
     try {
@@ -24,8 +25,6 @@ export default function Map({ event }) {
   useEffect(() => {
     addToGeoCode();
   }, [addToGeoCode]);
-
-  const GMAP_KEY = process.env.REACT_APP_GMAP_KEY;
 
   return (
     <LoadScript googleMapsApiKey={GMAP_KEY}>

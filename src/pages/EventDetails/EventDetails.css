@@ -14,7 +14,7 @@ div.ui.container img#poster {
   height: 500px;
   position: absolute;
   border-radius: 0;
-  top: 0;
+  top: 4rem;
   left: 0;
   right: 0;
   padding: 0;
@@ -22,7 +22,6 @@ div.ui.container img#poster {
   border-width: inherit;
   background-color: #2b3337;
   overflow: hidden;
-  z-index: -1;
 }
 
 #gaussian-poster {
