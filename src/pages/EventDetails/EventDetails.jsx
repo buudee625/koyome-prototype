@@ -14,6 +14,7 @@ import {
 } from 'semantic-ui-react';
 import * as eventAPI from '../../utils/eventAPI';
 import * as likesAPI from '../../utils/likesAPI';
+import Map from '../../components/Map/Map';
 
 export default function EventDetails({ user, prettifyDate, getAllEvents }) {
   const [oneEvent, setOneEvent] = useState({});
@@ -127,6 +128,7 @@ export default function EventDetails({ user, prettifyDate, getAllEvents }) {
                 <Header.Content>Location</Header.Content>
               </Header>
               <p>{oneEvent?.location}</p>
+              <Map event={oneEvent}></Map>
             </Segment>
             <Segment style={{ borderRadius: '0', padding: '30px' }}>
               <Header as="h3">Hosted by:</Header>

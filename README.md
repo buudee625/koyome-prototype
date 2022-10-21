@@ -62,6 +62,8 @@ That's what inspired KoyoMe! The world's calendar where all of the events and ac
 - react-datetime
 - twitter-like-button
 - react-pro-sidebar
+- @react-google-maps/api
+- use-places-autocomplete
 
 </br>
 

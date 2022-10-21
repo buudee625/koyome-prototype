@@ -5,6 +5,7 @@
 #eventall-hero {
   height: 500px;
   border-radius: 0;
+  top: 0;
   left: 0;
   right: 0;
   padding: 0;
@@ -13,6 +14,7 @@
   overflow: hidden;
   margin-top: -15px;
   background-color: rgb(142, 183, 188);
+  z-index: -1;
 }
 
 #eventall-gaussian {
