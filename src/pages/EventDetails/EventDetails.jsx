@@ -33,7 +33,7 @@ export default function EventDetails({ user, prettifyDate, getAllEvents }) {
   }, [id]);
 
   useEffect(() => {
-    console.log('useEfx from EventDetails()');
+    console.log('useEfx: EventDetails()');
     getOneEvent();
   }, [getOneEvent]);
 
@@ -44,10 +44,10 @@ export default function EventDetails({ user, prettifyDate, getAllEvents }) {
   async function handleEventDelete(eventID) {
     try {
       const res = await eventAPI.deleteEvent(eventID);
-      console.log(res, '<< res from handleEventDelete(): EventCard ');
-      await nav('/events');
+      console.log(res, '<--- res from handleEventDelete(): EventDetails');
+      nav('/events');
     } catch (err) {
-      console.log(err);
+      console.log(err, '<--- err from handleEventDelete(): EventDetails');
     }
     getAllEvents();
   }
@@ -128,7 +128,7 @@ export default function EventDetails({ user, prettifyDate, getAllEvents }) {
                 <Header.Content>Location</Header.Content>
               </Header>
               <p>{oneEvent?.location}</p>
-              <Map event={oneEvent}></Map>
+              {/* <Map event={oneEvent}></Map> */}
             </Segment>
             <Segment style={{ borderRadius: '0', padding: '30px' }}>
               <Header as="h3">Hosted by:</Header>

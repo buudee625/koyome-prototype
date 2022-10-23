@@ -1,0 +1,34 @@
+.ui.container.test-container {
+  margin: 0;
+  padding: 0;
+  height: 200vh;
+  width: 100%;
+}
+
+.hero-img {
+  max-width: 100%;
+  height: 300px;
+  position: absolute;
+  top: 4rem;
+  z-index: -1;
+  background-size: cover;
+}
+
+.details-container {
+  margin: 10rem auto 0;
+  background-color: #fff;
+  max-width: 75%;
+  display: grid;
+}
+
+.poster {
+  background-color: chocolate;
+}
+
+.info-head {
+  background-color: darkorange;
+}
+
+.info-body {
+  background-color: green;
+}

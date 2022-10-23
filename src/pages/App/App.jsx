@@ -4,12 +4,13 @@ import { Navigate, useNavigate, Route, Routes } from 'react-router-dom';
 // Stylesheet
 import './App.css';
 // Components
+import NavBar from '../../components/NavBar/NavBar';
 import SignupPage from '../SignupPage/SignupPage';
 import LoginPage from '../LoginPage/LoginPage';
 import Profile from '../Profile/Profile';
-import EventAll from '../../pages/EventAll/EventAll';
+import EventAll from '../EventAll/EventAll';
 import EventDetails from '../EventDetails/EventDetails';
-import NavBar from '../../components/NavBar/NavBar';
+import TestPage from '../TestPage/TestPage';
 // APIs
 import userService from '../../utils/userService';
 import * as eventsAPI from '../../utils/eventAPI';
@@ -75,6 +76,7 @@ function App() {
       <>
         <NavBar loggedUser={user} handleLogout={handleLogout} />
         <Routes>
+          <Route path="/testpage" element={<TestPage />} />
           <Route
             path="/login"
             element={<LoginPage handleSignUpOrLogin={handleSignUpOrLogin} />}
@@ -116,7 +118,6 @@ function App() {
               />
             }
           ></Route>
-
           <Route path="/*" element={<Navigate to="/events" />} />
         </Routes>
       </>
