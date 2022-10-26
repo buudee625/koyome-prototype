@@ -1,5 +1,5 @@
 import './TestPage.css';
-import { Container, Image } from 'semantic-ui-react';
+import { Container, Image, Header, Icon } from 'semantic-ui-react';
 
 export default function testPage() {
   return (
@@ -11,8 +11,27 @@ export default function testPage() {
         />
       </div>
       <div className="details-container">
-        <div className="poster">a poster</div>
-        <div className="info-head">Event Title</div>
+        <div className="info-poster">a poster</div>
+        <div className="info-head">
+          <Header className="details-event-title" as="h1">
+            Test Super Fun Event
+          </Header>
+          <Header as="h5">
+            <Icon name="calendar alternate outline" />
+            <Header.Content>Start Time</Header.Content>
+          </Header>
+          <p>0000-00-00 00:00am</p>
+          <Header as="h5">
+            <Icon name="calendar alternate outline" />
+            <Header.Content>End Time</Header.Content>
+          </Header>
+          <p>0000-00-00 00:00am</p>
+          <Header as="h5">
+            <Icon name="map marker alternate" />
+            <Header.Content>Location</Header.Content>
+          </Header>
+          <p>123 Street, Test City, XX</p>
+        </div>
         <div className="info-body">Map and shit</div>
       </div>
     </Container>
