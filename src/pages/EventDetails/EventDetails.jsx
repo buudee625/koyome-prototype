@@ -4,13 +4,12 @@ import TwitterLikeButton from 'twitter-like-button';
 import './EventDetails.css';
 import {
   Container,
-  Segment,
-  Grid,
   Header,
   Image,
   Button,
   Icon,
   Label,
+  Divider,
 } from 'semantic-ui-react';
 import * as eventAPI from '../../utils/eventAPI';
 import * as likesAPI from '../../utils/likesAPI';
@@ -87,100 +86,79 @@ export default function EventDetails({ user, prettifyDate, getAllEvents }) {
       : () => addLike(oneEvent._id);
 
   return (
-    <Container>
-      <Segment id="event-hero">
+    <Container className="container-event-details">
+      <div id="event-hero">
         <Image src={oneEvent.poster} alt="poster" id="gaussian-poster" />
-      </Segment>
-      <Grid
-        className=""
-        style={{
-          width: '100vw',
-          marginTop: '10%',
-          marginLeft: '2%',
-        }}
-      >
-        <Grid.Column width={6}>
+      </div>
+      <div className="event-details-container">
+        <div className="event-details-poster">
           <Image id="poster" src={oneEvent.poster} alt="poster" />
-        </Grid.Column>
-        <Grid.Column width={6} style={{ textAlign: 'left' }}>
-          <Grid.Row>
-            <Segment
-              style={{
-                padding: '40px',
-                borderRadius: '0',
-                backgroundColor: '#FFEDF3',
-                borderColor: 'transparent',
-              }}
+        </div>
+        <div className="event-details-info-head">
+          <Header as="h1">{oneEvent.title}</Header>
+          <Divider className="event-details-divider"></Divider>
+          <Header as="h4">
+            <Icon name="calendar outline" />
+            <Header.Content>Start Time</Header.Content>
+          </Header>
+          <p>{startDate}</p>
+          <Header as="h4">
+            <Icon name="calendar" />
+            <Header.Content>End Time</Header.Content>
+          </Header>
+          <p>{endDate}</p>
+          <Header as="h4">
+            <Icon name="user" />
+            <Header.Content>Hosted by:</Header.Content>
+          </Header>
+          <p>
+            <Image
+              className="host-img"
+              avatar
+              src={oneEvent?.user?.photoUrl}
+            ></Image>
+            <Link
+              to={`/${oneEvent?.user?.username}`}
+              style={{ color: 'black' }}
             >
-              <Header as="h1">{oneEvent.title}</Header>
-              <Header as="h5">
-                <Icon name="calendar alternate outline" />
-                <Header.Content>Start Time</Header.Content>
-              </Header>
-              <p>{startDate}</p>
-              <Header as="h5">
-                <Icon name="calendar alternate outline" />
-                <Header.Content>End Time</Header.Content>
-              </Header>
-              <p>{endDate}</p>
-              <Header as="h5">
-                <Icon name="map marker alternate" />
-                <Header.Content>Location</Header.Content>
-              </Header>
-              <p>{oneEvent?.location}</p>
-              {/* <Map event={oneEvent}></Map> */}
-            </Segment>
-            <Segment style={{ borderRadius: '0', padding: '30px' }}>
-              <Header as="h3">Hosted by:</Header>
-              <p>
-                <Image avatar src={oneEvent?.user?.photoUrl}></Image>
-                <Link
-                  to={`/${oneEvent?.user?.username}`}
-                  style={{ color: 'black' }}
-                >
-                  {oneEvent?.user?.username}
-                </Link>
-              </p>
-              <Label
-                attached="top right"
-                style={{ backgroundColor: 'transparent' }}
-              >
-                <TwitterLikeButton
-                  isLiked={isLiked}
-                  onClick={clickHandler}
-                ></TwitterLikeButton>
-                <Label circular color="red">
-                  {oneEvent?.likes?.length}
-                </Label>
-              </Label>
-            </Segment>
-          </Grid.Row>
-          <Grid.Row>
-            <Segment style={{ padding: '40px', borderRadius: '0' }}>
-              <Header as="h3">About this event</Header>
-              <Container>
-                {oneEvent.description}
-                <Grid.Row>
-                  {oneEvent?.user?.username === user.username ? (
-                    <Button
-                      style={{ width: '15rem', marginTop: '20px' }}
-                      animated="vertical"
-                      onClick={() => handleEventDelete(oneEvent._id)}
-                    >
-                      <Button.Content visible>
-                        <Icon name="delete"></Icon>
-                      </Button.Content>
-                      <Button.Content hidden>Delete Event</Button.Content>
-                    </Button>
-                  ) : (
-                    ''
-                  )}
-                </Grid.Row>
-              </Container>
-            </Segment>
-          </Grid.Row>
-        </Grid.Column>
-      </Grid>
+              {oneEvent?.user?.username}
+            </Link>
+          </p>
+          <div className="btn-like">
+            <TwitterLikeButton
+              isLiked={isLiked}
+              onClick={clickHandler}
+            ></TwitterLikeButton>
+            <Label circular color="red" className="count-like">
+              {oneEvent?.likes?.length}
+            </Label>
+          </div>
+        </div>
+        <div className="event-details-info-body">
+          <Header as="h4">
+            <Icon name="map marker alternate" />
+            <Header.Content>Location</Header.Content>
+          </Header>
+          <p>{oneEvent?.location}</p>
+          {/* <Map event={oneEvent}></Map> */}
+          <Header as="h4">About this event</Header>
+          {oneEvent.description}
+          {oneEvent?.user?.username === user.username ? (
+            <Button
+              style={{ width: '15rem', marginTop: '20px' }}
+              animated="vertical"
+              onClick={() => handleEventDelete(oneEvent._id)}
+            >
+              <Button.Content visible>
+                <Icon name="delete"></Icon>
+              </Button.Content>
+              <Button.Content hidden>Delete Event</Button.Content>
+            </Button>
+          ) : (
+            ''
+          )}
+        </div>
+      </div>
     </Container>
   );
 }
