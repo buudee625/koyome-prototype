@@ -25,7 +25,7 @@ div.ui.container img#poster {
   padding: 0;
   box-shadow: none;
   border-width: inherit;
-  background-color: #2b3337;
+  background-color: var(--koyo-dark);
   overflow: hidden;
   z-index: -1;
 }
@@ -45,18 +45,17 @@ button.ui.vertical.animated.button {
   padding: 0 23px;
   height: 40px;
   display: inline-block;
-  border: 2px solid #f9004d;
+  border: 2px solid var(--koyo-main);
   background-color: transparent;
   border-radius: 4px;
   font-size: 14px;
   position: relative;
-
   letter-spacing: 0.2px;
   text-transform: uppercase;
 }
 
 button.ui.vertical.animated.button:hover {
-  border: 2px solid #f9004d;
+  border: 2px solid var(--koyo-main);
   color: #fff;
   background: #f9004d;
 }
@@ -87,7 +86,7 @@ button.ui.vertical.animated.button:hover {
 .event-details-info-head {
   padding: 40px;
   border-radius: 5px;
-  background-color: #ffedf3;
+  background-color: var(--koyo-second);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
 }
 

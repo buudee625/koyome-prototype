@@ -11,6 +11,7 @@ import Profile from '../Profile/Profile';
 import EventAll from '../EventAll/EventAll';
 import EventDetails from '../EventDetails/EventDetails';
 import TestPage from '../TestPage/TestPage';
+import EventEdit from '../EventEdit/EventEdit';
 // APIs
 import userService from '../../utils/userService';
 import * as eventsAPI from '../../utils/eventAPI';
@@ -77,6 +78,7 @@ function App() {
         <NavBar loggedUser={user} handleLogout={handleLogout} />
         <Routes>
           <Route path="/testpage" element={<TestPage />} />
+          <Route path="/events/:id/edit" element={<EventEdit />} />
           <Route
             path="/login"
             element={<LoginPage handleSignUpOrLogin={handleSignUpOrLogin} />}

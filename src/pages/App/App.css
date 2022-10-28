@@ -1,5 +1,7 @@
 :root {
   --koyo-main: #f9004d;
+  --koyo-second: #ffedf3;
+  --koyo-dark: #2b3337;
 }
 
 .App {

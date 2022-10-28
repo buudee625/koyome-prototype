@@ -124,14 +124,21 @@ export default function EventDetails({ user, prettifyDate, getAllEvents }) {
               {oneEvent?.user?.username}
             </Link>
           </p>
-          <div className="btn-like">
-            <TwitterLikeButton
-              isLiked={isLiked}
-              onClick={clickHandler}
-            ></TwitterLikeButton>
-            <Label circular color="red" className="count-like">
-              {oneEvent?.likes?.length}
-            </Label>
+          <div className="event-btns">
+            <div className="btn-like">
+              <TwitterLikeButton
+                isLiked={isLiked}
+                onClick={clickHandler}
+              ></TwitterLikeButton>
+              <Label circular color="red" className="count-like">
+                {oneEvent?.likes?.length}
+              </Label>
+            </div>
+            <div className="btn-edit">
+              <Link to={`/events/${id}/edit`}>
+                <Icon name="edit" size="large"></Icon>
+              </Link>
+            </div>
           </div>
         </div>
         <div className="event-details-info-body">
