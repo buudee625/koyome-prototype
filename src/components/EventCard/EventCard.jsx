@@ -36,9 +36,13 @@ export default function EventCard({ event, prettifyDate }) {
             </Link>
 
             <Card.Description className="time">{startDate}</Card.Description>
-            <Link to={`/events/${event._id}`} className="event-title">
-              <Button className="more-details">More Details</Button>
-            </Link>
+            <Button
+              className="more-details"
+              as="a"
+              href={`/events/${event._id}`}
+            >
+              More Details
+            </Button>
           </div>
         </Container>
       </Container>

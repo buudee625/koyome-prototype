@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './LoginPage.css';
 import ErrorMessage from '../../components/ErrorMessage/ErrorMessage';
 import userService from '../../utils/userService';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import {
   Button,
   Form,
@@ -89,9 +89,13 @@ export default function LoginPage(props) {
               </Form>
             </Grid.Column>
             <Grid.Column verticalAlign="middle">
-              <Link to="/signup">
-                <Button content="Sign up" icon="signup" size="big" />
-              </Link>
+              <Button
+                content="Sign up"
+                icon="signup"
+                size="big"
+                as="a"
+                href="/signup"
+              />
             </Grid.Column>
           </Grid>
           <Divider vertical>Or</Divider>

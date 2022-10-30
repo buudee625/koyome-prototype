@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import './EventAll.css';
 import EventCard from '../../components/EventCard/EventCard';
 import Loading from '../../components/Loading/Loading';
@@ -30,10 +29,8 @@ export default function EventAll({
       <Segment id="eventall-hero">
         <Container id="eventall-textcontainer">
           <h1 id="eventall-h1">adventure awaits.</h1>
-          <Button id="hero-button">
-            <Link to={`/${user.username}`} style={{ color: 'white' }}>
-              Create an event
-            </Link>
+          <Button id="hero-button" as="a" href={`/${user.username}`}>
+            Create an event
           </Button>
         </Container>
         <Image

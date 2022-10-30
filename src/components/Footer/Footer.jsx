@@ -6,7 +6,6 @@ import {
   Grid,
   List,
   Header,
-  Button,
   Input,
   Icon,
 } from 'semantic-ui-react';
