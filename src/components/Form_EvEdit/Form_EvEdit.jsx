@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
-import { Form, Button } from 'semantic-ui-react';
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import Datetime from 'react-datetime';
 import * as EventAPI from '../../utils/eventAPI';
+import './Form_EvEdit.css';
+import { Form, Button, Checkbox } from 'semantic-ui-react';
 
-export default function FormEvEdit({ setModal, getUserEvents }) {
+export default function FormEvEdit({ eventToEdit }) {
   const [input, setInput] = useState({
     title: '',
     start: '',
@@ -12,10 +14,23 @@ export default function FormEvEdit({ setModal, getUserEvents }) {
     eventUrl: '',
     description: '',
   });
-  const [selectedFile, setSelectedFile] = useState('');
   const [start, setStart] = useState('');
   const [end, setEnd] = useState('');
 
+  // ========== setState ========== //
+  useEffect(() => {
+    console.log('useEfx: FormEvEdit');
+    if (eventToEdit) {
+      setInput({
+        title: eventToEdit.title,
+        start: eventToEdit.start,
+        end: eventToEdit.end,
+        location: eventToEdit.location,
+        eventUrl: eventToEdit.eventUrl,
+        description: eventToEdit.description,
+      });
+    }
+  }, [eventToEdit]);
   // ========== Input Handlers ========== //
   function handleInput(e) {
     setInput({
@@ -24,32 +39,15 @@ export default function FormEvEdit({ setModal, getUserEvents }) {
     });
   }
 
-  function handleFileInput(e) {
-    setSelectedFile(e.target.files[0]);
-  }
-
   // call functions
   async function handleSubmit(e) {
     e.preventDefault();
-    // console.log(input, '<---input handleSubmit(): NewEvent');
-
-    const formData = new FormData();
-    // console.log(selectedFile, '<--selectedFile');
-
-    formData.append('photo', selectedFile);
-    formData.append('start', start);
-    formData.append('end', end);
-    for (let key in input) {
-      formData.append(key, input[key]);
-    }
+    // console.log(input, '<< input: handleSubmit()');
     try {
-      setModal({ type: 'CLOSE_MODAL' });
-      const response = await EventAPI.create(formData);
-      console.log(response, '<< response from handleSubmit() Events_New');
+      await EventAPI.editEvent(input, eventToEdit._id);
     } catch (err) {
-      console.log(err.message, '<< err from handleSubmit() Events_New');
+      console.log(err.message, '<< err.message: handleSubmit()');
     }
-    getUserEvents();
   }
 
   function handleStart(moObj) {
@@ -63,35 +61,43 @@ export default function FormEvEdit({ setModal, getUserEvents }) {
   }
 
   return (
-    <Form onSubmit={handleSubmit}>
-      {/* ========== Event Form ========== */}
-      <div className="event-form-input">
+    <div>
+      <Form onSubmit={handleSubmit}>
+        {/* ========== Event Form ========== */}
         <label htmlFor="event-start">
           <strong>Event Title</strong>
         </label>
         <Form.Input
           name="title"
-          placeholder="What's this event called?"
+          value={input.title}
           onChange={handleInput}
         ></Form.Input>
         <label htmlFor="event-start">
           <strong>Event Start</strong>
         </label>
         <Form.Field>
-          <Datetime name="start" onChange={(date) => handleStart(date)} />
+          <Datetime
+            name="start"
+            value={Date(input.start)}
+            onChange={(date) => handleStart(date)}
+          />
         </Form.Field>
         <label htmlFor="event-end">
           <strong>Event End</strong>
         </label>
         <Form.Field>
-          <Datetime name="end" onChange={(date) => handleEnd(date)} />
+          <Datetime
+            name="end"
+            value={Date(input.end)}
+            onChange={(date) => handleEnd(date)}
+          />
         </Form.Field>
         <label htmlFor="location">
           <strong>Location</strong>
         </label>
         <Form.Input
           name="location"
-          placeholder="Event address"
+          value={input.location}
           onChange={handleInput}
         ></Form.Input>
         <label htmlFor="eventUrl">
@@ -99,7 +105,7 @@ export default function FormEvEdit({ setModal, getUserEvents }) {
         </label>
         <Form.Input
           name="eventUrl"
-          placeholder="Event URL"
+          value={input.eventUrl}
           onChange={handleInput}
         ></Form.Input>
         <label htmlFor="event-start">
@@ -107,34 +113,22 @@ export default function FormEvEdit({ setModal, getUserEvents }) {
         </label>
         <Form.TextArea
           name="description"
-          placeholder="Something about this event"
+          value={input.description}
           onChange={handleInput}
         ></Form.TextArea>
-        <label htmlFor="event-start">
-          <strong>Poster</strong>
-        </label>
-
-        <Form.Field>
-          <Form.Input
-            type="file"
-            name="poster"
-            placeholder="Upload event poster"
-            onChange={handleFileInput}
-          />
-        </Form.Field>
-      </div>
-      {/* ========== Event Meta ========== */}
-      <div className="event-form-meta">
-        <Form.Group grouped>
-          <label>Other Information</label>
-          <Form.Field label="This one" control="input" type="checkbox" />
-          <Form.Field label="That one" control="input" type="checkbox" />
-        </Form.Group>
-      </div>
-      {/* ========== Buttons ========== */}
-      <Button type="submit" style={{ color: 'white', background: '#f9004d' }}>
-        Create
-      </Button>
-    </Form>
+        {/* ========== Buttons ========== */}
+        <Button className="ev-edit-btn-edit" type="submit">
+          Save
+        </Button>
+        <Button
+          basic
+          className="ev-edit-btn-cancel"
+          as="a"
+          href={`/events/${eventToEdit._id}`}
+        >
+          Cancel
+        </Button>
+      </Form>
+    </div>
   );
 }

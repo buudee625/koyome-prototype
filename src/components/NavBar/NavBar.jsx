@@ -4,7 +4,7 @@ import { Menu, Header, Image, Dropdown } from 'semantic-ui-react';
 import './NavBar.css';
 
 export default function NavBar({ loggedUser, handleLogout }) {
-  console.log(loggedUser, '<-- loggedUser in header');
+  // console.log(loggedUser, '<-- loggedUser in header');
   return (
     <Menu borderless className="nav-bar">
       <Menu.Item>
@@ -38,10 +38,8 @@ export default function NavBar({ loggedUser, handleLogout }) {
         </Menu.Item>
         <Dropdown item icon="bars">
           <Dropdown.Menu>
-            <Dropdown.Item>
-              <Link to="/events" style={{ color: 'black' }}>
-                All Events
-              </Link>
+            <Dropdown.Item as="a" href="/events">
+              All Events
             </Dropdown.Item>
             <Dropdown.Item text="Followed Calendars" />
             <Dropdown.Item text="Liked Events" />

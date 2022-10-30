@@ -52,16 +52,22 @@ async function show(req, res) {
 
 async function deleteEvent(req, res) {
   try {
-    // const eventToDel = await Event.findById(req.params.id);
-    // console.log(eventToDel, '<< eventToDel from deleteEvent(): ctrl/events');
-    // eventToDel.remove({});
     await Event.findByIdAndDelete(req.params.id);
     console.log('1 Document removed');
     res.status(201).json({});
-    // await eventToDel.save();
   } catch (err) {
     res.status(500).json(err);
-    console.log(err, '<<< err from deleteEvent(): ctrl/events');
+    console.log(err, '<<< err: deleteEvent()/events/ctrl');
+  }
+}
+
+async function editEvent(req, res) {
+  try {
+    await Event.findOneAndUpdate({ _id: req.params.id }, req.body);
+    res.status(201).json({});
+  } catch (err) {
+    res.status(500).json(err);
+    console.log(err);
   }
 }
 
@@ -70,4 +76,5 @@ module.exports = {
   show,
   create,
   deleteEvent,
+  editEvent,
 };

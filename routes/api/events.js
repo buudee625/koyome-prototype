@@ -10,6 +10,7 @@ router.get('/', eventCtrl.index);
 router.get('/:id', eventCtrl.show);
 router.post('/', upload.single('photo'), eventCtrl.create);
 router.delete('/:id', eventCtrl.deleteEvent);
+router.put('/:id', eventCtrl.editEvent);
 
 /*---------- Protected Routes ----------*/
 

@@ -7,7 +7,7 @@ import { Header } from 'semantic-ui-react';
 
 export default function EventEdit() {
   const [eventToEdit, setEventToEdit] = useState({});
-  const id = useParams();
+  const { id } = useParams();
 
   const getOneEventEdit = useCallback(async () => {
     try {
