@@ -90,10 +90,13 @@ export default function EventDetails({ user, prettifyDate, getAllEvents }) {
       <div id="event-hero">
         <Image src={oneEvent.poster} alt="poster" id="gaussian-poster" />
       </div>
+      {/* ========== Event Details Container ========== */}
       <div className="event-details-container">
+        {/* ========== Poster ========== */}
         <div className="event-details-poster">
           <Image id="poster" src={oneEvent.poster} alt="poster" />
         </div>
+        {/* ========== Details Header ========== */}
         <div className="event-details-info-head">
           <Header as="h1">{oneEvent.title}</Header>
           <Divider className="event-details-divider"></Divider>
@@ -124,6 +127,7 @@ export default function EventDetails({ user, prettifyDate, getAllEvents }) {
               {oneEvent?.user?.username}
             </Link>
           </p>
+          {/* ========== Button Group ========== */}
           <div className="event-btns">
             <div className="btn-like">
               <TwitterLikeButton
@@ -134,36 +138,47 @@ export default function EventDetails({ user, prettifyDate, getAllEvents }) {
                 {oneEvent?.likes?.length}
               </Label>
             </div>
-            <div className="btn-edit">
-              <Link to={`/events/${id}/edit`}>
-                <Icon name="edit" size="large"></Icon>
-              </Link>
+            <div className="btn-fav">
+              <Icon link name="bookmark" color="black" />
             </div>
+            <div className="btn-share">
+              <Icon link name="share square" color="black" />
+            </div>
+            {oneEvent?.user?.username === user.username ? (
+              <>
+                <div className="btn-edit">
+                  <Link to={`/events/${id}/edit`}>
+                    <Icon name="pencil" color="black" />
+                  </Link>
+                </div>
+                <div className="btn-delete">
+                  <Icon
+                    link
+                    name="delete"
+                    onClick={() => handleEventDelete(oneEvent._id)}
+                  />
+                </div>
+              </>
+            ) : (
+              ''
+            )}
           </div>
         </div>
+        {/* ========== Details Body ========== */}
         <div className="event-details-info-body">
+          {/* ========== Map Component ========== */}
           <Header as="h4">
             <Icon name="map marker alternate" />
             <Header.Content>Location</Header.Content>
           </Header>
           <p>{oneEvent?.location}</p>
           {/* <Map event={oneEvent}></Map> */}
-          <Header as="h4">About this event</Header>
-          {oneEvent.description}
-          {oneEvent?.user?.username === user.username ? (
-            <Button
-              style={{ width: '15rem', marginTop: '20px' }}
-              animated="vertical"
-              onClick={() => handleEventDelete(oneEvent._id)}
-            >
-              <Button.Content visible>
-                <Icon name="delete"></Icon>
-              </Button.Content>
-              <Button.Content hidden>Delete Event</Button.Content>
-            </Button>
-          ) : (
-            ''
-          )}
+          {/* ========== Event Description ========== */}
+          <Header as="h4">
+            <Icon name="info" />
+            <Header.Content>About this event</Header.Content>
+          </Header>
+          <p>{oneEvent.description}</p>
         </div>
       </div>
     </Container>

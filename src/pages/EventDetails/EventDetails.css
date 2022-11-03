@@ -70,7 +70,7 @@ button.ui.vertical.animated.button:hover {
   max-width: 80%;
   display: grid;
   grid-template-columns: repeat(2, minmax(350px, 2fr));
-  grid-template-rows: 500px auto;
+  grid-template-rows: 475px auto;
   column-gap: 1rem;
   row-gap: 3rem;
 }
@@ -91,7 +91,8 @@ button.ui.vertical.animated.button:hover {
 }
 
 .event-details-info-body {
-  padding: 40px;
+  padding: 40px 40px 25px;
+  margin-bottom: 4rem;
   border-radius: 5px;
   background-color: #fff;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
@@ -99,7 +100,27 @@ button.ui.vertical.animated.button:hover {
   grid-row: 2 / 3;
 }
 
-/* ========== Button: Likes ========== */
+.event-details-info-head:last-child {
+  margin-bottom: 20px;
+}
+
+/* ========== Button Group ========== */
+.event-btns {
+  display: flex;
+  justify-content: space-evenly;
+  font-size: 30px;
+  margin-top: 18px;
+  margin-bottom: 0;
+}
+
+.btn-share,
+.btn-fav,
+.btn-edit,
+.btn-delete {
+  padding-top: 20px;
+}
+
+/* ========== Btn: Likes ========== */
 .btn-like {
   position: relative;
 }
@@ -110,3 +131,5 @@ button.ui.vertical.animated.button:hover {
   left: 35px;
   z-index: 2;
 }
+
+/* ========== Btn: Edit ========== */
