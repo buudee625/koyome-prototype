@@ -1,6 +1,5 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import { Link, useParams, useNavigate } from 'react-router-dom';
-import TwitterLikeButton from 'twitter-like-button';
 import './EventDetails.css';
 import {
   Container,
@@ -52,9 +51,19 @@ export default function EventDetails({ user, prettifyDate, getAllEvents }) {
   }
 
   // ========== Like Funcs ========== //
-  async function addLike(eventID) {
-    // Where is the postId defined in the UI?
+  // .findIndex will return -1 if current user's username is not found in the event's like array
+  const likedIndex = oneEvent?.likes?.findIndex(
+    (like) => like.username === user.username
+  );
+  const isLiked = likedIndex > -1 ? true : false;
+  const clickHandler =
+    likedIndex > -1
+      ? () => removeLike(oneEvent.likes[likedIndex]._id)
+      : () => addLike(oneEvent._id);
+  // define the color base on the likeIndex
+  const likeColor = likedIndex > -1 ? 'red' : 'grey';
 
+  async function addLike(eventID) {
     try {
       const response = await likesAPI.create(eventID);
       console.log(response, '<--- addlike() reaponse');
@@ -75,15 +84,6 @@ export default function EventDetails({ user, prettifyDate, getAllEvents }) {
       console.log(err, '<--- err from removeLike(): EventDetails');
     }
   }
-
-  const likedIndex = oneEvent?.likes?.findIndex(
-    (like) => like.username === user.username
-  );
-  const isLiked = likedIndex > -1 ? true : false;
-  const clickHandler =
-    likedIndex > -1
-      ? () => removeLike(oneEvent.likes[likedIndex]._id)
-      : () => addLike(oneEvent._id);
 
   return (
     <Container className="container-event-details">
@@ -130,10 +130,7 @@ export default function EventDetails({ user, prettifyDate, getAllEvents }) {
           {/* ========== Button Group ========== */}
           <div className="event-btns">
             <div className="btn-like">
-              <TwitterLikeButton
-                isLiked={isLiked}
-                onClick={clickHandler}
-              ></TwitterLikeButton>
+              <Icon name="heart" color={likeColor} onClick={clickHandler} />
               <Label circular color="red" className="count-like">
                 {oneEvent?.likes?.length}
               </Label>
